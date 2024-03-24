@@ -1,0 +1,12 @@
+.Logo {
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100; /* Ensure the image is above the navbar */
+  }
+  
+  .Logo img {
+    display: block;
+    width: 100%; /* Adjust image width as needed */
+  }

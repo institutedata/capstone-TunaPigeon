@@ -1,0 +1,6 @@
+.dynamic-div {
+    width: 800px; /* Fixed width */
+    overflow: hidden; /* Optional: Hide overflow if text is too long */
+    border: 1px solid black; /* Optional: Add border for better visibility */
+    padding: 15px;
+  }
