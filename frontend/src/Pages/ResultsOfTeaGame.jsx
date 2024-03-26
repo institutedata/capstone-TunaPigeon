@@ -39,7 +39,7 @@ const ResultsOfTeaGame = ({ PhotoURL, name, nextCustomer, submissionStatus, scor
   };
 
 
-
+0
   //opens help dialog
   const handleClickOpenInstructions = () => {
     setOpen(true);

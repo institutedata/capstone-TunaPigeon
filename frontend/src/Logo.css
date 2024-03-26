@@ -4,6 +4,7 @@
     left: 50%;
     transform: translateX(-50%);
     z-index: 100; /* Ensure the image is above the navbar */
+    
   }
   
   .Logo img {
