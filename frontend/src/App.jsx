@@ -7,6 +7,7 @@ import NavBar from './NavBar'
 import Logo from './Logo'
 import ThemesButton from './ThemesButton'
 import './ThemesButtonPlacement.css'
+import SimpleContainer from './testcontainer'
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
       <div className="content-container">
         {/* <SimpleForm></SimpleForm> */}
       <AppRoutes></AppRoutes>
+      {/* <SimpleContainer></SimpleContainer> */}
       {/* <RandomCharacter></RandomCharacter> */}
       {/* <RowAndColumnSpacing></RowAndColumnSpacing> */}
       </div>
