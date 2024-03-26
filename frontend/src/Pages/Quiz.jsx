@@ -45,10 +45,10 @@ const Quiz = () => {
             <div className="container">
               <div className={`flip-card ${questionData.isFlipped ? "flipped" : ""}`}>
                 <div className="flip-card-inner">
-                  <div className="flip-card-front">
-                    <div className="card-content">
-                      <Card>
-                        <CardContent>
+                  <div className="flip-card-front"  onClick={() => handleFlip(questionData.id)}>
+                    <div className="card-content" >
+                      {/* <Card sx={{ width: 200, height: 200 }} className="flip-card-front"  onClick={() => handleFlip(questionData.id)}>  */}
+                        <CardContent >
                           <div>
                             <h2>Question: {questionData.question}</h2>
                             <h3>Possible Answers:</h3>
@@ -58,18 +58,19 @@ const Quiz = () => {
                               ))}
                             </ul>
                           </div>
-                          <button className="flip-button" onClick={() => handleFlip(questionData.id)}>Flip</button>
+                          
                         </CardContent>
-                      </Card>
+                      {/* </Card> */}
                     </div>
                   </div>
-                  <div className="flip-card-back">
-                    <div className="card-content">
+                  <div className="flip-card-back"  onClick={() => handleFlip(questionData.id)}>
+                    <div className="card-content" >
+                      
                       <CardContent>
                         <p>Correct Answer: {questionData.correctAnswer}</p>
                       </CardContent>
                     </div>
-                    <button className="flip-button" onClick={() => handleFlip(questionData.id)}>Flip</button>
+                    
                   </div>
                 </div>
               </div>
