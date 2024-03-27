@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useRef  } from 'react';
 import axios from 'axios';
 import { Grid } from '@mui/material';
 
@@ -8,6 +8,7 @@ const CharacterList = () => {
   const perPage = 20; // Number of characters per page
   const [expandedCharacter, setExpandedCharacter] = useState(null);
 const [totalCharacters, setTotalCharacters] = useState(0);
+const expandedCharacterRef = useRef(null);
   useEffect(() => {
     const fetchCharacters = async () => {
       try {
@@ -41,35 +42,45 @@ const [totalCharacters, setTotalCharacters] = useState(0);
 
   console.log("Total Characters:", totalCharacters);
 
+
+
   const handleCharacterClick = (index) => {
-    // Toggle expanded state
-    setExpandedCharacter(prevIndex => prevIndex === index ? null : index);
+    setExpandedCharacter(index)
+    expandedCharacterRef.current.scrollIntoView({ behavior: 'smooth' });
   };
 
   const nextPage = () => {
     setCurrentPage(prevPage => prevPage + 1);
+    setExpandedCharacter(null);
   };
 
   const prevPage = () => {
     if (currentPage > 1) {
       setCurrentPage(prevPage => prevPage - 1);
+      setExpandedCharacter(null);
     }
   };
 
   return (
     <div>
       <h1>Character List</h1>
+      <div ref={expandedCharacterRef}>
+        {expandedCharacter !== null && (
+          <div style={{ border: '1px solid black', padding: '10px', textAlign: 'center' }}>
+            <img src={allCharacters[expandedCharacter].photoUrl} alt={allCharacters[expandedCharacter].name} style={{ height: '200px' }} />
+            <div>Name: {allCharacters[expandedCharacter].name}</div>
+            <div>Affiliation: {allCharacters[expandedCharacter].affiliation || 'N/A'}</div>
+            <div>Allies: {allCharacters[expandedCharacter].allies.length ? allCharacters[expandedCharacter].allies.join(', ') : 'N/A'}</div>
+            <div>Enemies: {allCharacters[expandedCharacter].enemies.length ? allCharacters[expandedCharacter].enemies.join(', ') : 'N/A'}</div>
+          </div>
+        )}
+      </div>
       <Grid container spacing={2}>
         {allCharacters.map((character, index) => (
           <Grid key={index} item xs={12} sm={6} md={3}>
             <div style={{ border: '1px solid black', padding: '10px', textAlign: 'center' }} onClick={() => handleCharacterClick(index)}>
-              <img src={character.photoUrl} alt={character.name} style={{ height: expandedCharacter === index ? '200px' : '100px' }} />
-              <div style={{ fontWeight: expandedCharacter === index ? 'bold' : 'normal' }}>{character.name}</div>
-              {expandedCharacter === index && ( <>
-      <div>Affiliation: {character.affiliation || 'N/A'}</div>
-      <div>Allies: {character.allies.length ? character.allies.join(', ') : 'N/A'}</div>
-      <div>Enemies: {character.enemies.length ? character.enemies.join(', ') : 'N/A'}</div>
-      </>)}
+              <img src={character.photoUrl} alt={character.name} style={{ height: '100px' }} />
+              <div>{character.name}</div>
             </div>
           </Grid>
         ))}
@@ -81,4 +92,5 @@ const [totalCharacters, setTotalCharacters] = useState(0);
     </div>
   );
 };
+
 export default CharacterList;
