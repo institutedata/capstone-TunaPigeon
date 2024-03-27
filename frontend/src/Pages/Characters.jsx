@@ -22,9 +22,13 @@ const [totalCharacters, setTotalCharacters] = useState(0);
         const characters = response.data;
         setTotalCharacters(characters.length);
         // Set the fetched characters
+        console.log(characters); 
         setAllCharacters(characters.map(character => ({
           name: character.name,
-          photoUrl: character.photoUrl
+          photoUrl: character.photoUrl,
+          affiliation: character.affiliation,
+          allies: character.allies,
+          enemies: character.enemies
         })));
       } catch (error) {
         console.error('Error fetching characters:', error);
@@ -59,13 +63,13 @@ const [totalCharacters, setTotalCharacters] = useState(0);
         {allCharacters.map((character, index) => (
           <Grid key={index} item xs={12} sm={6} md={3}>
             <div style={{ border: '1px solid black', padding: '10px', textAlign: 'center' }} onClick={() => handleCharacterClick(index)}>
-              <img src={character.photoUrl} alt={character.name} style={{ height: '100px' }} />
-              {expandedCharacter === index && (
-                <div>
-                  <img src={character.photoUrl} alt={character.name} style={{ height: '200px' }} />
-                </div>
-              )}
-              <div>{character.name}</div>
+              <img src={character.photoUrl} alt={character.name} style={{ height: expandedCharacter === index ? '200px' : '100px' }} />
+              <div style={{ fontWeight: expandedCharacter === index ? 'bold' : 'normal' }}>{character.name}</div>
+              {expandedCharacter === index && ( <>
+      <div>Affiliation: {character.affiliation || 'N/A'}</div>
+      <div>Allies: {character.allies.length ? character.allies.join(', ') : 'N/A'}</div>
+      <div>Enemies: {character.enemies.length ? character.enemies.join(', ') : 'N/A'}</div>
+      </>)}
             </div>
           </Grid>
         ))}
@@ -77,5 +81,4 @@ const [totalCharacters, setTotalCharacters] = useState(0);
     </div>
   );
 };
-
 export default CharacterList;
