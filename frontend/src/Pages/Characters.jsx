@@ -45,9 +45,15 @@ const expandedCharacterRef = useRef(null);
 
 
   const handleCharacterClick = (index) => {
-    setExpandedCharacter(index)
-    expandedCharacterRef.current.scrollIntoView({ behavior: 'smooth' });
+    setExpandedCharacter(index);
+  
+    // Scroll to the expanded character div
+    expandedCharacterRef.current.scrollIntoView({behavior: 'smooth'});
   };
+  
+  
+  
+  
 
   const nextPage = () => {
     setCurrentPage(prevPage => prevPage + 1);
@@ -60,6 +66,12 @@ const expandedCharacterRef = useRef(null);
       setExpandedCharacter(null);
     }
   };
+
+  useEffect(() => {
+    if (expandedCharacter !== null) {
+      expandedCharacterRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [expandedCharacter]);
 
   return (
     <div>
