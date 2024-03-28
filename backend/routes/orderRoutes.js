@@ -14,7 +14,7 @@ router.put('/orders/:id', (req, res) => {
    Controllers.orderController.updateOrder(req, res)
 })
 // // Adds a PUT route to delete an order
-// router.delete('/:id', (req, res) => {
-//    Controllers.orderController.deleteOrder(req, res)
-// })
+router.delete('/orders/delete', (req, res) => {
+   Controllers.orderController.deleteOrders(req, res)
+})
 module.exports = router;

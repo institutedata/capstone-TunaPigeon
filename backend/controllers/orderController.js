@@ -81,35 +81,17 @@ const updateOrder = async (req, res) => {
 
 
 
-const deleteOrder = async (req, res) => {
-    // deletes the user matching the ID from the param
+const deleteOrders = async (req, res) => {
     try {
-        // Delete the order
-        const deletedOrder = await Models.Order.findByIdAndDelete(req.params.id);
-        if (!deletedOrder) {
-            return res.status(404).json({ result: 404, message: "Order not found" });
-        }
-
-        // Find the customer associated with the deleted order
-        const customer = await Models.Customer.findOne({ name: deletedOrder.customerName });
-        const character = await Models.Character.findOne({ name: deletedOrder.customerName });
-
-        // Decrement the numberOfOrders counter
-        if (customer.numberOfOrders > 0) {
-            customer.numberOfOrders--;
-            character.numberOfOrders--;
-            await customer.save();
-            await character.save();
-        }
-
-        // If numberOfOrders becomes 0, delete the customer
-        if (customer.numberOfOrders === 0) {
-            await Models.Customer.deleteOne({ _id: customer._id });
-        }
+        // Delete all orders
+        const deletedOrders = await Models.Order.deleteMany();
         
-
+        // If no orders were deleted, return a 404 status
+        if (deletedOrders.deletedCount === 0) {
+            return res.status(404).json({ result: 404, message: "No orders found" });
+        }
         // Send response
-        res.status(200).json({ result: 200, deletedOrder: deletedOrder });
+        res.status(200).json({ result: 200, message: "All orders deleted successfully" });
     } catch (err) {
         console.error(err);
         res.status(500).json({ result: 500, error: err.message });
@@ -118,5 +100,5 @@ const deleteOrder = async (req, res) => {
     
 
 module.exports = {
-    getOrders, createOrder, updateOrder,deleteOrder
+    getOrders, createOrder, updateOrder,deleteOrders
 }
