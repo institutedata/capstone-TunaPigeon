@@ -2,7 +2,7 @@ import Dialog from "@mui/material/Dialog";
 import Button from "@mui/material/Button";
 import DialogContentText from '@mui/material/DialogContentText';
 import { DialogContent } from '@mui/material';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import JasmineDragon from "./JasmineDragon";
 
@@ -15,6 +15,13 @@ const ResultsOfTeaGame = ({ PhotoURL, name, nextCustomer, submissionStatus, scor
   //button for restart game; sends to parent component
   const handleRestartGame = () => {
     restartGame();
+    axios.delete('http://localhost:8080/jasminedragon/orders/delete')
+      .then(response => {
+        console.log('All orders deleted successfully');
+      })
+      .catch(error => {
+        console.error('Error deleting orders:', error);
+      });
   }
 
 
@@ -23,6 +30,8 @@ const ResultsOfTeaGame = ({ PhotoURL, name, nextCustomer, submissionStatus, scor
   // to trigger the help module
   const [open, setOpen] = useState(false);
   const [showJasmineDragon, setShowJasmineDragon] = useState(false);
+
+  
 
 
   const fetchData = () => {
@@ -53,6 +62,9 @@ const ResultsOfTeaGame = ({ PhotoURL, name, nextCustomer, submissionStatus, scor
   const handleMainMenu = () => {
     setShowJasmineDragon(true);
   };
+
+
+
 
 
   return (
@@ -89,7 +101,28 @@ const ResultsOfTeaGame = ({ PhotoURL, name, nextCustomer, submissionStatus, scor
           <button onClick={handleRestartGame}>Start Again</button>
           <button onClick={handleMainMenu}>Back to Main Menu</button>
 
-        </p><p>Final score: {score}</p></div>}
+        </p><p>Final score: {score}</p>
+        
+        <Button variant="outlined" onClick={handleClickOpenInstructions}>
+          Previous orders
+        </Button>
+        <Dialog open={open} onClose={handleCloseInstructions}>
+          <DialogContent>
+            
+              {/* Render the result */}
+              Result: {result}
+
+              {/* Render orders */}
+              <ul>
+                {orders.map(order => (
+                  <li key={order._id}>
+                    {/* Render individual order details */}
+                    {order.customerName} ordered {order.tea} = {order.status}
+                  </li>
+                ))}
+              </ul>
+            
+          </DialogContent></Dialog></div>}
 
         
       </>

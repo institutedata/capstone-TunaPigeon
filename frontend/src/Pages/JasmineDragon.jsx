@@ -4,12 +4,13 @@ import Dialog from "@mui/material/Dialog";
 import Button from "@mui/material/Button";
 import DialogContentText from '@mui/material/DialogContentText';
 import { DialogContent } from '@mui/material';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./border.css";
 import Heading from '../Heading';
 import "./centeredImage.css"
 import { blackTheme } from '../themes/blackTheme';
 import { ThemeProvider } from '@emotion/react'
+import axios from 'axios';
 
 
 
@@ -34,7 +35,18 @@ const JasmineDragon = ({ text }) => {
     setOpen(false);
   }
 
-
+  useEffect(() => {
+    
+    // Make a request to delete all orders
+    axios.delete('http://localhost:8080/jasminedragon/orders/delete')
+      .then(response => {
+        console.log('All orders deleted successfully');
+      })
+      .catch(error => {
+        console.error('Error deleting orders:', error);
+      });
+  
+});
 
 
   return (
