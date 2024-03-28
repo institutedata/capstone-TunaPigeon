@@ -7,7 +7,7 @@ import { DialogContent } from '@mui/material';
 import { useState } from "react";
 import "./border.css";
 import Heading from '../Heading';
-
+import "./centeredImage.css"
 import { blackTheme } from '../themes/blackTheme';
 import { ThemeProvider } from '@emotion/react'
 
@@ -59,16 +59,26 @@ const JasmineDragon = ({ text }) => {
                     There will be a time limit of 10 seconds to complete each order before you have to take the next order. One failed order and you will be fired!
                   </DialogContentText>
                   <DialogContentText>You will be greeted by a customer who will tell you their order, and you will have to enter in the tea into the system.</DialogContentText>
+                  <div className="centeredImage">
                   <img src="src/assets/images/first.png" alt="Description of the image" width="500px" />
+                  </div>
                   <DialogContentText> As the order is being loaded in, you will have 5 seconds to prepare by using that time to familiarise yourself with the required ingredients (each tea will have 4 ingredients).</DialogContentText>
+                  <div className="centeredImage">
                   <img src="src/assets/images/second.png" alt="Description of the image" width="500px" />
+                  </div>
                   <DialogContentText> After those 5 seconds, you will then be taken to a page where you have 10 seconds to complete the order (the ingredients will be shown again on the left side),
                     by finding and clicking each button corresponding to each required ingredient, and then clicking submit</DialogContentText>
+                    <div className="centeredImage">
                   <img src="src/assets/images/third.png" alt="Description of the image" width="500px" />
+                  </div>
                   <DialogContentText> If you successfully completed the order, the customer will thank you and you will be able to move onto the next customer (your score, which is the number of completed orders, will be shown at the bottom)</DialogContentText>
+                  <div className="centeredImage">
                   <img src="src/assets/images/fourth.png" alt="Description of the image" width="500px" />
+                  </div>
                   <DialogContentText>But if you failed, you will be "fired" personally by Zuko himself (your final score will be shown at the bottom)</DialogContentText>
+                  <div className="centeredImage">
                   <img src="src/assets/images/fifth.png" alt="Description of the image" width="500px" />
+                    </div>
                 </DialogContent></Dialog></ThemeProvider></div>
 
         </>

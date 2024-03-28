@@ -1,6 +1,6 @@
 import React, { useState, useEffect,useRef  } from 'react';
 import axios from 'axios';
-import { Grid } from '@mui/material';
+import { Grid, Button, Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
 
 const CharacterList = () => {
   const [allCharacters, setAllCharacters] = useState([]);
@@ -8,7 +8,7 @@ const CharacterList = () => {
   const perPage = 20; // Number of characters per page
   const [expandedCharacter, setExpandedCharacter] = useState(null);
 const [totalCharacters, setTotalCharacters] = useState(0);
-const expandedCharacterRef = useRef(null);
+const [dialogOpen, setDialogOpen] = useState(false);
   useEffect(() => {
     const fetchCharacters = async () => {
       try {
@@ -42,17 +42,15 @@ const expandedCharacterRef = useRef(null);
 
   console.log("Total Characters:", totalCharacters);
 
-
-
   const handleCharacterClick = (index) => {
     setExpandedCharacter(index);
-  
-    // Scroll to the expanded character div
-    expandedCharacterRef.current.scrollIntoView({behavior: 'smooth'});
+    setDialogOpen(true);
   };
-  
-  
-  
+
+  const handleCloseDialog = () => {
+    setDialogOpen(false);
+  };
+
   
 
   const nextPage = () => {
@@ -67,26 +65,10 @@ const expandedCharacterRef = useRef(null);
     }
   };
 
-  useEffect(() => {
-    if (expandedCharacter !== null) {
-      expandedCharacterRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
-  }, [expandedCharacter]);
 
   return (
     <div>
       <h1>Character List</h1>
-      <div ref={expandedCharacterRef}>
-        {expandedCharacter !== null && (
-          <div style={{ border: '1px solid black', padding: '10px', textAlign: 'center' }}>
-            <img src={allCharacters[expandedCharacter].photoUrl} alt={allCharacters[expandedCharacter].name} style={{ height: '200px' }} />
-            <div>Name: {allCharacters[expandedCharacter].name}</div>
-            <div>Affiliation: {allCharacters[expandedCharacter].affiliation || 'N/A'}</div>
-            <div>Allies: {allCharacters[expandedCharacter].allies.length ? allCharacters[expandedCharacter].allies.join(', ') : 'N/A'}</div>
-            <div>Enemies: {allCharacters[expandedCharacter].enemies.length ? allCharacters[expandedCharacter].enemies.join(', ') : 'N/A'}</div>
-          </div>
-        )}
-      </div>
       <Grid container spacing={2}>
         {allCharacters.map((character, index) => (
           <Grid key={index} item xs={12} sm={6} md={3}>
@@ -101,6 +83,25 @@ const expandedCharacterRef = useRef(null);
         <button onClick={prevPage} disabled={currentPage === 1}>Previous</button>
         <button onClick={nextPage} disabled={totalCharacters < 20}>Next</button>
       </div>
+      <Dialog open={dialogOpen} onClose={handleCloseDialog}>
+        {expandedCharacter !== null && (
+          <>
+          
+            <DialogTitle>{allCharacters[expandedCharacter].name}</DialogTitle>
+            <DialogContent >
+            <div className="centeredImage">
+              <img src={allCharacters[expandedCharacter].photoUrl} alt={allCharacters[expandedCharacter].name} style={{ height: '200px' }} />
+              </div>
+              <div style={{ marginTop: '20px' }}>Affiliation: {allCharacters[expandedCharacter].affiliation || 'N/A'}</div>
+              <div>Allies: {allCharacters[expandedCharacter].allies.length ? allCharacters[expandedCharacter].allies.join(', ') : 'N/A'}</div>
+              <div>Enemies: {allCharacters[expandedCharacter].enemies.length ? allCharacters[expandedCharacter].enemies.join(', ') : 'N/A'}</div>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleCloseDialog}>Close</Button>
+            </DialogActions>
+          </>
+        )}
+      </Dialog>
     </div>
   );
 };

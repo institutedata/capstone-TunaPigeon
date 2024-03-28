@@ -5,7 +5,7 @@ import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import { useState, useEffect } from 'react';
-
+import axios from 'axios';
 //style for the buttons
 const Item = styled(Paper)(({ theme, selected }) => ({
   backgroundColor: selected ? '#ffcc80' : (theme.palette.mode === 'dark' ? '#1A2027' : '#fff'),
@@ -17,7 +17,7 @@ const Item = styled(Paper)(({ theme, selected }) => ({
 }));
 
 // props to parent component
-export default function RowAndColumnSpacing({ Tea, Ingredients, CorrectIngredients, onSubmit }) {
+export default function RowAndColumnSpacing({ Tea, Ingredients, CorrectIngredients, onSubmit, orderId }) {
   //list of ingredients shuffled to randomize it
   const [selectedIngredients, setSelectedIngredients] = useState([]);
   //shows the selected button placements
@@ -78,19 +78,36 @@ export default function RowAndColumnSpacing({ Tea, Ingredients, CorrectIngredien
     const isCorrect = CorrectIngredients.every((ingredient) =>
       selectedIngredients.includes(ingredient)
     );
-//if correct do this
-    if (isCorrectSelection)
-  {
-    console.log ("IT MATCHES")
-    setIsRunning(false);
-    onSubmit(isCorrect);
-  }
-  else {
-    console.log ("what the")
-    setShowError(true);
-  }
-    
+
+    // console.log(orderId)
+    //if correct do this
+    if (isCorrectSelection) {
+      console.log("IT MATCHES")
+      setIsRunning(false);
+      handleUpdateStatus();
+
+      
+
+
+      onSubmit(isCorrect);
+    }
+    else {
+      console.log("what the")
+      setShowError(true);
+    }
+
   };
+
+  const handleUpdateStatus = async () => {
+    try {
+        const response = await axios.put(`http://localhost:8080/jasminedragon/orders/${orderId}`);
+        console.log('Status updated successfully:', response.data);
+        // Handle any additional logic after the status is updated
+    } catch (error) {
+        console.error('Error updating status:', error);
+        // Handle error scenarios
+    }
+};
 
 
   // Get selected ingredients from the selected indices

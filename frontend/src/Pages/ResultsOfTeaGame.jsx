@@ -79,7 +79,7 @@ const ResultsOfTeaGame = ({ PhotoURL, name, nextCustomer, submissionStatus, scor
                 {orders.map(order => (
                   <li key={order._id}>
                     {/* Render individual order details */}
-                    {order.customerName} ordered {order.tea}
+                    {order.customerName} ordered {order.tea} = {order.status}
                   </li>
                 ))}
               </ul>

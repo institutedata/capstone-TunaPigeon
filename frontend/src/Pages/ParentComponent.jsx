@@ -25,6 +25,7 @@ const ParentComponent = () => {
   const [score, setScore]= useState(0);
   const [showClockIn, setShowClockIn] = useState(true);
   const [playerName, setPlayerName]= useState('');
+  const [orderId, setOrderId] = useState(null);
 
 
   //whenever character generator gets a new character, it will send that new name 
@@ -36,12 +37,15 @@ const ParentComponent = () => {
   const handleTeaValidationSuccess = (tea) => {
     console.log("Entered tea:", tea);
     setReceivedTea(tea);
+    sendDataToBackend(characterName, tea)
   };
   
   //when the button is clicked, it will hide the character generator and show preparations page
   const TeaGameButton = () => {
     setShowAPIData(false); // Hide APIData
     setShowPreparations(true)
+    // console.log(receivedTea)
+    
 };
 
     //when timer runs out it will trigger this
@@ -70,7 +74,7 @@ const handleSubmit = (isCorrect) => {
     setSubmissionStatus(isCorrect ? 'success' : 'failed');
     setShowResults(true); 
     setScore(score => score+1)
-    sendDataToBackend(characterName, receivedTea)
+    
     console.log(receivedTea)
     // Additional actions like updating state, showing a success message, etc.
   } else {
@@ -113,6 +117,10 @@ const sendDataToBackend = (characterName, receivedTea) => {
     .then(response => {
       // Handle success response
       console.log('Order created successfully:', response.data);
+      
+      console.log(response.data.tea);
+      console.log(response.data.order._id);
+      setOrderId(response.data.order._id)
     })
     .catch(error => {
       // Handle error response
@@ -157,7 +165,7 @@ const sendScoreToBackend = (playerName, score) => {
     {showPreparations &&<PreparationPage onTimerEnd={TeaGameStart} TeaIngredients={correctTeaIngredients} Tea={receivedTea}/>}  
         {showResults &&<ResultsOfTeaGame PhotoURL={characterPhoto} name={characterName} nextCustomer={handleNextCustomer} submissionStatus={submissionStatus} score={score} restartGame={handleRestartGame} playerName={playerName}/>}
         {showAPIData &&<APIData onNameChange={handleCharacterNameChange} selectedTea={selectedTea} onTeaValidationSuccess={TeaGameButton} TeaReceieved={handleTeaValidationSuccess} TeaIngredients={handleTeaIngredients} CorrectIngredients={handleCorrectTeaIngredients} PhotoURL={handlePhoto} />}
-      {showRowAndColumnSpacing && <RowAndColumnSpacing Tea={receivedTea} Ingredients={teaIngredients} CorrectIngredients={correctTeaIngredients} onSubmit={handleSubmit}/>}
+      {showRowAndColumnSpacing && <RowAndColumnSpacing Tea={receivedTea} Ingredients={teaIngredients} CorrectIngredients={correctTeaIngredients} onSubmit={handleSubmit} orderId={orderId}/>}
       
     </div>
     </div>

@@ -14,7 +14,7 @@ function App() {
   return (
     <>
     <div className="top-left-button">
-    <ThemesButton></ThemesButton>
+    {/* <ThemesButton></ThemesButton> */}
     </div>
     <div className="app-container">
     <Logo></Logo>

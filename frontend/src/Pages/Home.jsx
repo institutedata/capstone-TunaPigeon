@@ -49,7 +49,7 @@ const HomePage = () => {
   return (
     <>
     
-    <Grid container spacing={2}>
+    <Grid container spacing={2} >
     <Grid item xs={12}>
         {/* Content of the third div */}
         <div style={{ height: '100px', backgroundColor: 'transparent', display:'inline'}}>
@@ -57,7 +57,7 @@ const HomePage = () => {
         </div>
       </Grid>
       {/* Third Div */}
-      <Grid item xs={12}>
+      <Grid item xs={12} >
         {/* Content of the third div */}
         <div style={{ height: '100px', backgroundColor: 'transparent' , display:'inline' }}>
           
@@ -66,7 +66,7 @@ const HomePage = () => {
         </div>
       </Grid>
       {/* First Div */}
-      <Grid item xs={12} md={6}>
+      <Grid item xs={12} md={6} style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)', border:'black'}}>
         {/* Content of the first div */}
         <div style={{ height: '500px', backgroundColor: 'transparent', display:'inline' }}>
         <img src="https://m.media-amazon.com/images/I/51p0QKI6bRL._AC_UF894,1000_QL80_.jpg" alt="Description of the image" height="300px" />
@@ -77,7 +77,7 @@ const HomePage = () => {
         </div>
       </Grid>
       {/* Second Div */}
-      <Grid item xs={12} md={6}>
+      <Grid item xs={12} md={6} style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
         {/* Content of the second div */}
         <div style={{ height: '500px', backgroundColor: 'transparent' , display:'inline'}}>
         <img src="https://m.media-amazon.com/images/I/71RdBbHY6vL._AC_UF894,1000_QL80_.jpg" alt="Description of the image" height="300px" />
