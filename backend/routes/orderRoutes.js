@@ -10,9 +10,9 @@ router.post('/create', (req, res) => {
    Controllers.orderController.createOrder(req.body, res);
 })
 // Adds a PUT route to update an order
-// router.put('/:id', (req, res) => {
-//    Controllers.orderController.updateOrder(req, res)
-// })
+router.put('/orders/:id', (req, res) => {
+   Controllers.orderController.updateOrder(req, res)
+})
 // // Adds a PUT route to delete an order
 // router.delete('/:id', (req, res) => {
 //    Controllers.orderController.deleteOrder(req, res)

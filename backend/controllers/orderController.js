@@ -60,18 +60,25 @@ const createOrder = async (data, res) => {
 
 
 
-const updateOrder = (req, res) => {
-    // updates the user matching the ID from the param using JSON data POSTed in request body
-    console.log(req.body)
-    Models.Order.findByIdAndUpdate(req.params.id, req.body, { 
-new: true }) 
+const updateOrder = async (req, res) => {
+    const { id } = req.params;
+    console.log(id)
+    try {
+        // Find the order by ID and update the status
+        const updatedOrder = await Models.Order.findByIdAndUpdate(id, { status: 'Completed' }, { new: true });
+        
+        if (!updatedOrder) {
+            return res.status(404).json({ message: 'Order not found', id });
+        }
+  
+        // Return the updated order
+        res.json(updatedOrder);
+    } catch (error) {
+        console.error('Error updating order status:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+};
 
-        .then(data => res.send({result: 200, updatedstatus: data}))
-        .catch(err => {
-            console.log(err);
-            res.send({result: 500, error: err.message})
-        })  
-}
 
 
 const deleteOrder = async (req, res) => {
