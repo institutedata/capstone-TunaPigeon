@@ -1,27 +1,4 @@
-/* .NavBar {
-    position: absolute;
-    top: 200px;
-    left: 50%;
-    width: 50%;
-    transform: translateX(-50%);
-    background-color: transparent;
-    color: white;
-    padding: 1rem;
-  }
-  
-  .menu {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .menu li {
-    display: inline;
-    margin-right: 1rem;
-    background-color: black;
-  }
-   */
-
-   .NavBar {
+ .NavBar {
     position: absolute;
     top: 25%; /* Position the NavBar 50% from the top */
     left: 50%; /* Position the NavBar 50% from the left */

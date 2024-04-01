@@ -3,11 +3,10 @@ import './App.css'
 // import APIData from './API'
 // import AddTeaOrder from './AddTeaOrder'
 import AppRoutes from './Routes/AppRoutes'
-import NavBar from './NavBar'
+import NavBar from './Container/NavBar'
 import Logo from './Logo'
 import ThemesButton from './ThemesButton'
 import './ThemesButtonPlacement.css'
-import SimpleContainer from './testcontainer'
 
 function App() {
 
@@ -20,11 +19,7 @@ function App() {
     <Logo></Logo>
       <NavBar></NavBar>
       <div className="content-container">
-        {/* <SimpleForm></SimpleForm> */}
       <AppRoutes></AppRoutes>
-      {/* <SimpleContainer></SimpleContainer> */}
-      {/* <RandomCharacter></RandomCharacter> */}
-      {/* <RowAndColumnSpacing></RowAndColumnSpacing> */}
       </div>
     </div>
 

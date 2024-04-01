@@ -2,7 +2,6 @@ import React, { useState, useEffect} from 'react';
 import APIData from './API';
 // import Tea from './Tea';
 import Heading from '../Heading';
-import "../ParentComponent.css";
 import RowAndColumnSpacing from './InteractiveTeaGame';
 import ResultsOfTeaGame from './ResultsOfTeaGame';
 import PreparationPage from './PreparationPage';
@@ -143,7 +142,7 @@ const sendScoreToBackend = (playerName, score) => {
   };
 
   // Make a POST request to the backend API endpoint
-  axios.post('http://localhost:8080/teashop/highscore/set', data)
+  axios.post('http://localhost:8080/highscore/set', data)
     .then(response => {
       // Handle success response
       console.log('Score saved:', response.data);

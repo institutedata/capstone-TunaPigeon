@@ -18,7 +18,8 @@ const ClockInPage =({PlayerNameReceieved}) => {
 
     return (
         <div>
-          <h1>Welcome</h1>
+          <h1>Welcome!</h1>
+          <h3>Enter your name below:</h3>
           <form onSubmit={handleSubmit}>
               <div>
                 <label>Name:

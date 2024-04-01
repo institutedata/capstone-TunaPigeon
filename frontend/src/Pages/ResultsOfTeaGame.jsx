@@ -1,12 +1,12 @@
 import Dialog from "@mui/material/Dialog";
 import Button from "@mui/material/Button";
 import DialogContentText from '@mui/material/DialogContentText';
-import { DialogContent } from '@mui/material';
-import { useState, useEffect } from "react";
+import { DialogContent , Typography, Grid} from '@mui/material';
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import JasmineDragon from "./JasmineDragon";
 
-const ResultsOfTeaGame = ({ PhotoURL, name, nextCustomer, submissionStatus, score, restartGame, playerName, MainMenu}) => {
+const ResultsOfTeaGame = ({ PhotoURL, name, nextCustomer, submissionStatus, score, restartGame, playerName, MainMenu }) => {
 
   //button for next round; sends to parent component
   const handleNextCustomer = () => {
@@ -31,7 +31,7 @@ const ResultsOfTeaGame = ({ PhotoURL, name, nextCustomer, submissionStatus, scor
   const [open, setOpen] = useState(false);
   const [showJasmineDragon, setShowJasmineDragon] = useState(false);
 
-  
+
 
 
   const fetchData = () => {
@@ -48,7 +48,7 @@ const ResultsOfTeaGame = ({ PhotoURL, name, nextCustomer, submissionStatus, scor
   };
 
 
-0
+  0
   //opens help dialog
   const handleClickOpenInstructions = () => {
     setOpen(true);
@@ -69,69 +69,109 @@ const ResultsOfTeaGame = ({ PhotoURL, name, nextCustomer, submissionStatus, scor
 
   return (
     <div>
-    {!showJasmineDragon && (
-    <div className="JasmineTeaBox">
-      <>
-        {submissionStatus === 'success' && <div><p>Name: {name}</p><p><img src={PhotoURL} alt="Character" style={{ height: '200px' }} /></p><p>"Thank you!"</p><p>
-          {/* <button>Previous orders</button> */}
-          <button onClick={handleNextCustomer}>Next customer</button>
+      {!showJasmineDragon && (
+        <div className="JasmineTeaBox">
+          <>
+            {submissionStatus === 'success' && <div><p>Name: {name}</p><p><img src={PhotoURL} alt="Character" style={{ height: '200px' }} /></p><p>"Thank you!"</p><p>
+              {/* <button>Previous orders</button> */}
+              <button onClick={handleNextCustomer}>Next customer</button>
 
-        </p><p>Current score: {score}</p>
-        <Button variant="outlined" onClick={handleClickOpenInstructions}>
-          Previous orders
-        </Button>
-        <Dialog open={open} onClose={handleCloseInstructions}>
-          <DialogContent>
-            
-              {/* Render the result */}
-              Result: {result}
+            </p><p>Current score: {score}</p>
+              <Button variant="outlined" onClick={handleClickOpenInstructions}>
+                Previous orders
+              </Button>
+              <Dialog open={open} onClose={handleCloseInstructions}>
+              <Typography variant="h6" align="center">
+                  Completed Orders
+                </Typography>
 
-              {/* Render orders */}
-              <ul>
-                {orders.map(order => (
-                  <li key={order._id}>
-                    {/* Render individual order details */}
-                    {order.customerName} ordered {order.tea} = {order.status}
-                  </li>
-                ))}
-              </ul>
-            
-          </DialogContent></Dialog></div>}
-        {submissionStatus === 'failed' && <div><p><img src="src/assets/images/fired.gif" alt="Character" style={{ height: '200px' }} /></p><p>Time ran out!  {playerName}, YOU'RE FIRED!</p><p>
-          <button onClick={handleRestartGame}>Start Again</button>
-          <button onClick={handleMainMenu}>Back to Main Menu</button>
+                <DialogContent>
+                  {/* Grid layout to display high scores */}
+                  <Grid container spacing={2}>
+                    {/* Header row */}
+                    <Grid item xs={4}>
+                      <Typography variant="h6">Customer</Typography>
+                    </Grid>
+                    <Grid item xs={4}>
+                      <Typography variant="h6">Tea</Typography>
+                    </Grid>
+                    <Grid item xs={4}>
+                      <Typography variant="h6">Status</Typography>
+                    </Grid>
 
-        </p><p>Final score: {score}</p>
-        
-        <Button variant="outlined" onClick={handleClickOpenInstructions}>
-          Previous orders
-        </Button>
-        <Dialog open={open} onClose={handleCloseInstructions}>
-          <DialogContent>
-            
-              {/* Render the result */}
-              Result: {result}
+                    {/* High score entries */}
+                    {orders.map(order => (
+                      <React.Fragment key={order._id}>
+                        <Grid item xs={4}>
+                          <Typography>{order.customerName}</Typography>
+                        </Grid>
+                        <Grid item xs={4}>
+                          <Typography>{order.tea}</Typography>
+                        </Grid>
+                        <Grid item xs={4}>
+                          <Typography>{order.status}</Typography>
+                        </Grid>
+                      </React.Fragment>
+                    ))}
+                  </Grid>
+                </DialogContent>
+              </Dialog></div>}
+            {submissionStatus === 'failed' && <div><p><img src="src/assets/images/fired.gif" alt="Character" style={{ height: '200px' }} /></p><p>Time ran out!  {playerName}, YOU'RE FIRED!</p><p>
+              <button onClick={handleRestartGame}>Start Again</button>
+              <button onClick={handleMainMenu}>Back to Main Menu</button>
 
-              {/* Render orders */}
-              <ul>
-                {orders.map(order => (
-                  <li key={order._id}>
-                    {/* Render individual order details */}
-                    {order.customerName} ordered {order.tea} = {order.status}
-                  </li>
-                ))}
-              </ul>
-            
-          </DialogContent></Dialog></div>}
+            </p><p>Final score: {score}</p>
 
-        
-      </>
-      </div>
-    )}
-    
+              <Button variant="outlined" onClick={handleClickOpenInstructions}>
+                Previous orders
+              </Button>
+              <Dialog open={open} onClose={handleCloseInstructions}>
+
+                <Typography variant="h6" align="center">
+                  Orders
+                </Typography>
+
+                <DialogContent>
+                  {/* Grid layout to display high scores */}
+                  <Grid container spacing={2}>
+                    {/* Header row */}
+                    <Grid item xs={4}>
+                      <Typography variant="h6">Customer</Typography>
+                    </Grid>
+                    <Grid item xs={4}>
+                      <Typography variant="h6">Tea</Typography>
+                    </Grid>
+                    <Grid item xs={4}>
+                      <Typography variant="h6">Status</Typography>
+                    </Grid>
+
+                    {/* High score entries */}
+                    {orders.map(order => (
+                      <React.Fragment key={order._id}>
+                        <Grid item xs={4}>
+                          <Typography>{order.customerName}</Typography>
+                        </Grid>
+                        <Grid item xs={4}>
+                          <Typography>{order.tea}</Typography>
+                        </Grid>
+                        <Grid item xs={4}>
+                          <Typography>{order.status}</Typography>
+                        </Grid>
+                      </React.Fragment>
+                    ))}
+                  </Grid>
+                </DialogContent>
+              </Dialog></div>}
+
+
+          </>
+        </div>
+      )}
+
       {showJasmineDragon && <JasmineDragon />}
     </div>
   );
 }
 
 export default ResultsOfTeaGame;
+
