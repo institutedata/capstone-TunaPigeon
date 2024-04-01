@@ -8,7 +8,8 @@ import Grid from '@mui/material/Grid';
 import "./Quiz.css";
 const Quiz = () => {
   const [questions, setQuestions] = useState([]);
-  // const [isFlipped, setFlipped] = useState(false);
+  const [loading, setLoading] = useState(true);
+
 
   const handleFlip = (id) => {
     setQuestions(prevQuestions =>
@@ -24,7 +25,7 @@ const Quiz = () => {
       try {
         const response = await axios.get('https://api.sampleapis.com/avatar/questions');
         setQuestions(response.data);
-
+        setLoading(false)
       } catch (error) {
         console.error('Error fetching questions:', error);
       }
@@ -38,6 +39,8 @@ const Quiz = () => {
 
   return (
     <div className="App">
+      {loading ? (<p>Loading quiz...</p>) : (
+        <>
       <h1>Questions</h1>
       <Grid container spacing={2}>
         {questions.map((questionData) => (
@@ -78,6 +81,8 @@ const Quiz = () => {
           </Grid>
         ))}
       </Grid>
+      </>
+      )}
     </div>
   );
 };
