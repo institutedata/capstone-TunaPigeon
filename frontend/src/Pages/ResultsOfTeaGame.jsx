@@ -5,6 +5,8 @@ import { DialogContent , Typography, Grid} from '@mui/material';
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import JasmineDragon from "./JasmineDragon";
+import { blackTheme } from '../themes/blackTheme';
+import { ThemeProvider } from '@emotion/react'
 
 const ResultsOfTeaGame = ({ PhotoURL, name, nextCustomer, submissionStatus, score, restartGame, playerName, MainMenu }) => {
 
@@ -72,11 +74,15 @@ const ResultsOfTeaGame = ({ PhotoURL, name, nextCustomer, submissionStatus, scor
       {!showJasmineDragon && (
         <div className="JasmineTeaBox">
           <>
-            {submissionStatus === 'success' && <div><p>Name: {name}</p><p><img src={PhotoURL} alt="Character" style={{ height: '200px' }} /></p><p>"Thank you!"</p><p>
+            {submissionStatus === 'success' && 
+            <div><p><img src={PhotoURL} alt="Character" style={{ height: '200px' }} /></p><p>{name}: "Thank you!"</p>
+            
               {/* <button>Previous orders</button> */}
+              
               <button onClick={handleNextCustomer}>Next customer</button>
-
-            </p><p>Current score: {score}</p>
+              <p>Current score: {score}</p>
+              
+              <ThemeProvider theme={blackTheme}>
               <Button variant="outlined" onClick={handleClickOpenInstructions}>
                 Previous orders
               </Button>
@@ -115,14 +121,15 @@ const ResultsOfTeaGame = ({ PhotoURL, name, nextCustomer, submissionStatus, scor
                     ))}
                   </Grid>
                 </DialogContent>
-              </Dialog></div>}
+              </Dialog>
+              </ThemeProvider></div>}
             {submissionStatus === 'failed' && <div><p><img src="src/assets/images/fired.gif" alt="Character" style={{ height: '200px' }} /></p><p>Time ran out!  {playerName}, YOU'RE FIRED!</p><p>
               <button onClick={handleRestartGame}>Start Again</button>
               <button onClick={handleMainMenu}>Back to Main Menu</button>
 
             </p><p>Final score: {score}</p>
-
-              <Button variant="outlined" onClick={handleClickOpenInstructions}>
+            <ThemeProvider theme={blackTheme}>
+              <Button variant="outlined" onClick={handleClickOpenInstructions} >
                 Previous orders
               </Button>
               <Dialog open={open} onClose={handleCloseInstructions}>
@@ -161,7 +168,8 @@ const ResultsOfTeaGame = ({ PhotoURL, name, nextCustomer, submissionStatus, scor
                     ))}
                   </Grid>
                 </DialogContent>
-              </Dialog></div>}
+              </Dialog>
+              </ThemeProvider></div>}
 
 
           </>

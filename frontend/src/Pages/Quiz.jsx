@@ -38,11 +38,15 @@ const Quiz = () => {
 
 
   return (
-    <div className="App">
+    <div className="App" >
       {loading ? (<p>Loading quiz...</p>) : (
         <>
       <h1>Questions</h1>
-      <Grid container spacing={2}>
+
+      <Grid container spacing={2} style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)',  border: '1px solid black', paddingBottom: '56px'}}>
+      <Grid item xs={12}>
+      *only questions from the original show (Avatar: The Last Airbender)
+      </Grid>
         {questions.map((questionData) => (
           <Grid key={questionData.id} item xs={12} sm={6} md={3}>
             <div className="container">
@@ -84,6 +88,7 @@ const Quiz = () => {
       </>
       )}
     </div>
+    
   );
 };
 

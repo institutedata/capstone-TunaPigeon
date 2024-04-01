@@ -74,10 +74,10 @@ const CharacterList = () => {
       {loading ? (<p>Loading characters...</p>) : (
         <>
           <h1>Character List</h1>
-          <Grid container spacing={2}>
+          <Grid container spacing={2} style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)',  border: '1px solid black',  padding: '50px'}}>
             {allCharacters.map((character, index) => (
               <Grid key={index} item xs={12} sm={6} md={3}>
-                <div style={{ border: '1px solid black', padding: '10px', textAlign: 'center' }} onClick={() => handleCharacterClick(index)}>
+                <div style={{ border: '1px solid black', padding: '10px', textAlign: 'center' ,backgroundColor: 'white', color: 'black'}} onClick={() => handleCharacterClick(index)}>
                   <img src={character.photoUrl} alt={character.name} style={{ height: '100px' }} />
                   <div>{character.name}</div>
                 </div>

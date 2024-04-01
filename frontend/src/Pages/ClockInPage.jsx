@@ -1,4 +1,4 @@
-
+import "../API.css";
 
 const ClockInPage =({PlayerNameReceieved}) => {
 
@@ -17,7 +17,7 @@ const ClockInPage =({PlayerNameReceieved}) => {
 
 
     return (
-        <div>
+        <div className='JasmineTeaBox'>
           <h1>Welcome!</h1>
           <h3>Enter your name below:</h3>
           <form onSubmit={handleSubmit}>
