@@ -1,22 +1,23 @@
 "use strict";
 let Models = require("../models"); // matches index.js
-const getScores = (res) => {
+const moment = require('moment-timezone');
+const getScores = async(res) => {
     // finds all orders
-    Models.Score.find({})
-    .then(data => {
-        if (data.length === 0) {
-            res.status(404).json({ result: 404, message: "No orders" });
-        }
-        else{
-            res.send({result: 200, orders: data})
-        }
-        })
-        .catch(err => {
-            console.log(err);
-            res.send({ result: 500, error: err.message })
-        })
-}
+    try {
+        // Retrieve scores from the database, sorted by score in descending order,
+        // and timestamp in ascending order
+        const topScores = await Models.Score.find().sort({ score: -1, timestamp: -1 }).limit(10);
+        
+        // Convert timestamps to New Zealand time if needed (using moment-timezone)
 
+        // Send the sorted scores to the frontend
+        res.json(topScores);
+        console.log(topScores)
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+};
 const setScore = async (data, res) => {
     
 

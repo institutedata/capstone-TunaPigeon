@@ -40,7 +40,7 @@ let characterRoutes = require('./routes/characterRoutes');
 app.use('/database/characters', characterRoutes);
 
 let scoreRoutes = require('./routes/scoreRoutes');
-app.use('/teashop/highscore', scoreRoutes);
+app.use('/highscore', scoreRoutes);
 
 
 
