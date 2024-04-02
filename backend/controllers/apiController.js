@@ -28,6 +28,9 @@ const API = (res) => {
             // _id: character._id,
             name: character.name,
            photoUrl: character.photoUrl,
+           affiliation: character.affiliation,
+          allies: character.allies,
+          enemies: character.enemies
           };
         });
         //storing all characters into array

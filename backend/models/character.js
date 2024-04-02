@@ -4,7 +4,9 @@ const characterSchema = new Schema({
     //id: {type: String, trim: true, unique: true},
     photoUrl: { type: String, trim: true },
     name: { type: String, trim: true },
-    numberOfOrders: {type: Number, default: 0 }
+    affiliation: {type: String, trim: true },
+    allies: [String],
+    enemies: [String]
     
 }, 
 {
@@ -15,3 +17,4 @@ const characterSchema = new Schema({
 
 
 module.exports = mongoose.model("character", characterSchema);
+

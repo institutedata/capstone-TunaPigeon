@@ -3,7 +3,7 @@ const app = express();
 const cors = require('cors');
 require("dotenv").config();
 let dbConnect = require("./dbConnect");
-// app.use(cors());
+// app.use(cors()); http://localhost:8080/database/characters
 
 
 // app.use((req, res, next) => {
@@ -27,8 +27,6 @@ app.get("/", (req, res) => {
 const PORT = process.env.PORT || 8080;
 
 //different routes
-let customerRoutes = require('./routes/customerRoutes');
-app.use('/teashop/customers', customerRoutes);
 
 let orderRoutes = require('./routes/orderRoutes');
 app.use('/jasminedragon', orderRoutes);
