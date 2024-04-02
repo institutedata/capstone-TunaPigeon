@@ -41,7 +41,8 @@ const Quiz = () => {
     <div className="App" >
       {loading ? (<p>Loading quiz...</p>) : (
         <>
-      <h1>Questions</h1>
+      <h1>Quiz</h1>
+      <p>Test your knowledge on the original series!</p>
 
       <Grid container spacing={2} style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)',  border: '1px solid black', paddingBottom: '56px'}}>
       <Grid item xs={12}>

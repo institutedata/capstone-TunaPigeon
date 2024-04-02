@@ -10,6 +10,7 @@ import Heading from '../Heading';
 import "./centeredImage.css"
 import { blackTheme } from '../themes/blackTheme';
 import { ThemeProvider } from '@emotion/react'
+import {whiteTheme} from '../themes/whiteTheme'
 import axios from 'axios';
 
 import moment from 'moment-timezone';
@@ -84,9 +85,11 @@ const JasmineDragon = ({ text }) => {
          
             <p>The Jasmine Dragon is a traditional tea shop in the Upper Ring of Ba Sing Se; due to its location, its clientele mostly consists of the upper class citizens of the Earth Kingdom capital. It was once a failing business but was completely revived after Iroh took over. It opened shortly after he and Zuko arrived in the city as refugees. Iroh named it the "Jasmine Dragon" because, in his words, the name was "dramatic, poetic, and [had] a nice ring to it", and also as a reminder of the very nature of life: "Where there is balance, there is peace", evocative to jasmine tea's properties.</p>
             <p>You have been recently employed at this great establishment. You will work as both the cashier and junior tea maker, and will take orders while completing them in between. Make sure every customer get their tea else you might get fired (by Zuko, not Iroh)</p>
-            <button onClick={handleOpenShop}>Open Shop</button>
+            <Grid container spacing={2} >
+          
+            <Grid item xs={12} md={4}>
           <div>
-            <ThemeProvider theme={blackTheme}>
+            <ThemeProvider theme={whiteTheme}>
               <Button variant="outlined" onClick={handleClickOpenInstructions}>
                 How to play
               </Button>
@@ -95,6 +98,10 @@ const JasmineDragon = ({ text }) => {
                   <DialogContentText>
                     There will be a time limit of 10 seconds to complete each order before you have to take the next order. One failed order and you will be fired!
                   </DialogContentText>
+                  <DialogContentText>Before you begin your shift, you will have to enter your name to clock in. After that, customers will start flooding in.</DialogContentText>
+                  <div className="centeredImage">
+                    <img src="src/assets/images/zero.png" alt="Description of the image" width="500px" />
+                  </div>
                   <DialogContentText>You will be greeted by a customer who will tell you their order, and you will have to enter in the tea into the system.</DialogContentText>
                   <div className="centeredImage">
                     <img src="src/assets/images/first.png" alt="Description of the image" width="500px" />
@@ -117,8 +124,19 @@ const JasmineDragon = ({ text }) => {
                     <img src="src/assets/images/fifth.png" alt="Description of the image" width="500px" />
                   </div>
                 </DialogContent></Dialog></ThemeProvider></div>
+                </Grid>
+
+
+                <Grid item xs={12} md={4}>
+            <button onClick={handleOpenShop}>Open Shop</button>
+            </Grid>
+
+
+
+            <Grid item xs={12} md={4}>
+
           <div>
-          <ThemeProvider theme={blackTheme}>
+          <ThemeProvider theme={whiteTheme}>
             <Button variant="outlined" onClick={handleClickOpenHighscore}>
 
               Highscores
@@ -163,7 +181,8 @@ const JasmineDragon = ({ text }) => {
             </ThemeProvider>
           </div>
 
-          </div>
+                </Grid>
+          </Grid></div>
           
         </>
       )}

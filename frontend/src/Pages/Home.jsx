@@ -57,7 +57,7 @@ const HomePage = () => {
         </div>
       </Grid>
       {/* Third Div */}
-      <Grid item xs={12} style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)',  border: '1px solid black', borderBottom: '1px solid transparent',  padding: '50px'}}>
+      <Grid item xs={12} style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)', border: '1px solid black', borderBottom: '1px solid transparent', paddingTop: '50px', paddingRight: '50px', paddingLeft: '50px', paddingBottom: '0' }}>
         {/* Content of the third div */}
         <div style={{ height: '100px', backgroundColor: 'transparent' , display:'inline' }}>
           
@@ -86,12 +86,14 @@ const HomePage = () => {
         </p>
         </div>
       </Grid>
-      <Grid item xs={12} style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)',  border: '1px solid black', borderTop: '1px solid transparent',   padding: '50px'}}>
+      <Grid item xs={12} style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)',  border: '1px solid black', borderTop: '1px solid transparent', paddingTop: '0', paddingRight: '50px', paddingLeft: '50px', paddingBottom: '50px' }}>
         {/* Content of the third div */}
         <div style={{ height: '100px', backgroundColor: 'transparent', display:'inline' }}>
         Both series explore themes of friendship, identity, and the struggle between good and evil, while also delving into complex socio-political issues and the interconnectedness of all living things. Together, they form an epic saga of adventure, growth, and the enduring power of hope.
         </div>
       </Grid>
+
+      
     </Grid>
     </>
   );
