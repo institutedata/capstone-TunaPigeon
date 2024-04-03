@@ -14,25 +14,18 @@ const CharacterList = () => {
   useEffect(() => {
     const fetchCharacters = async () => {
       try {
-        const response = await axios.get(`https://last-airbender-api.fly.dev/api/v1/characters`, {
+        const response = await axios.get(`http://localhost:8080/database/characters`, {
           params: {
             perPage: perPage,
             page: currentPage
           }
         });
-        
         // Assuming response.data contains the characters array
         const characters = response.data;
         setTotalCharacters(characters.length);
         // Set the fetched characters
         console.log(characters);
-        setAllCharacters(characters.map(character => ({
-          name: character.name,
-          photoUrl: character.photoUrl,
-          affiliation: character.affiliation,
-          allies: character.allies,
-          enemies: character.enemies
-        })));
+        setAllCharacters(characters);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching characters:', error);
