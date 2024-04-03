@@ -42,7 +42,7 @@ const API = (res) => {
         } 
         else {
           // If no more pages, send all characters in the response
-          dbController.saveCustomersToDatabase(allCharacters);
+          dbController.saveCharactersToDatabase(allCharacters);
           res.send({ result: 200, characters: allCharacters });
         }
 
@@ -56,7 +56,49 @@ const API = (res) => {
   fetchCharacters();
 }
 
+const fetchQuestions = async(res)  => { 
+
+  let allQuestions = [];
+      // fetches all characters from the api
+    fetch('https://api.sampleapis.com/avatar/questions', {
+      method: 'GET',
+    })
+
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      //with each data/character, grab and map just the name and photoURL
+      .then(data => {
+        const questions = data.map(question => {
+          return {
+            // _id: character._id,
+            question: question.question,
+            possibleAnswers: question.possibleAnsers,
+            correctAnswer: question.correctAnswer,
+          
+          };
+        });
+        //storing all characters into array
+        allQuestions = allQuestions.concat(questions)
+        //checks if theres pages left with 100 characters, and will keep looping and running the function
+
+          // If no more pages, send all characters in the response
+          dbController.saveQuestionsToDatabase(allQuestions);
+          res.send({ result: 200, questions: allQuestions });
+
+      })
+      .catch(err => {
+        console.log(err);
+        res.send({ result: 500, error: err.message })
+        
+      })
+  }
+  
+
 module.exports = {
-  API
+  API, fetchQuestions
 
 }

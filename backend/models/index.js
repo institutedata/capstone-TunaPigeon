@@ -2,7 +2,9 @@
 module.exports = {
    Order: require('./order'),
    Character: require('./character'),
-   Score: require('./score')
+   Score: require('./score'),
+   Question: require('./question')
+
    
    
 

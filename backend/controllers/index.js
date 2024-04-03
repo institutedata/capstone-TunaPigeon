@@ -3,4 +3,5 @@ module.exports = {
     apiController: require('./apiController'),
     characterController: require('./characterController'),
     scoreController: require('./scoreController'),
+    questionController: require('./questionController'),
  }

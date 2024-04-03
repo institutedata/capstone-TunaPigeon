@@ -32,10 +32,13 @@ let orderRoutes = require('./routes/orderRoutes');
 app.use('/jasminedragon', orderRoutes);
 
 let apiRoutes = require('./routes/apiRoutes');
-app.use('/api/characters', apiRoutes);
+app.use('/api', apiRoutes);
 
 let characterRoutes = require('./routes/characterRoutes');
 app.use('/database/characters', characterRoutes);
+
+let questionRoutes = require('./routes/questionRoutes');
+app.use('/database/questions', questionRoutes);
 
 let scoreRoutes = require('./routes/scoreRoutes');
 app.use('/highscore', scoreRoutes);
