@@ -3,7 +3,8 @@ let router = express.Router();
 let Controllers = require("../controllers"); 
 // Adds a GET route to grab data from database; characters collection
 router.get('/', (req, res) => {
-   Controllers.characterController.getCharacters(res);
+   const { perPage, page } = req.query; 
+   Controllers.characterController.getCharacters(res, perPage, page);
 })
 
 module.exports = router;
