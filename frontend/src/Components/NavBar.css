@@ -6,6 +6,7 @@
     background-color: transparent;
     color: white;
     padding: 1rem;
+    
   }
   
   .menu {
@@ -13,6 +14,7 @@
     padding: 0;
     display: flex; /* Use Flexbox to align menu items */
     justify-content: center; /* Center the menu items horizontally */
+    
   }
   
   .menu li {

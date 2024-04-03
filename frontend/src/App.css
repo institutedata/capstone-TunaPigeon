@@ -1,8 +1,17 @@
+@font-face {
+  font-family: 'AvatarFont';
+  src: url('./Fonts/AvatarFont.ttf') format('truetype');
+}
+h1{
+  font-family: 'AvatarFont', sans-serif;
+
+}
+
 
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding-bottom: 2rem;
   text-align: center;
   
 }
