@@ -23,7 +23,11 @@ const API = (res) => {
       })
       //with each data/character, grab and map just the name and photoURL
       .then(data => {
-        const characters = data.map(character => {
+
+        const validCharacters = data.filter(character =>
+          character.photoUrl
+        );
+        const characters = validCharacters.map(character => {
           return {
             // _id: character._id,
             name: character.name,
