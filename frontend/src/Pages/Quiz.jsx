@@ -14,7 +14,7 @@ const Quiz = () => {
   const handleFlip = (id) => {
     setQuestions(prevQuestions =>
       prevQuestions.map(question =>
-        question.id === id ? { ...question, isFlipped: !question.isFlipped } : question
+        question._id === id ? { ...question, isFlipped: !question.isFlipped } : question
       )
     );
   };
@@ -23,8 +23,9 @@ const Quiz = () => {
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const response = await axios.get('https://api.sampleapis.com/avatar/questions');
+        const response = await axios.get('http://localhost:8080/database/questions');
         setQuestions(response.data);
+        console.log(response.data)
         setLoading(false)
       } catch (error) {
         console.error('Error fetching questions:', error);
@@ -49,11 +50,11 @@ const Quiz = () => {
       *only questions from the original show (Avatar: The Last Airbender)
       </Grid>
         {questions.map((questionData) => (
-          <Grid key={questionData.id} item xs={12} sm={6} md={3}>
+          <Grid key={questionData._id} item xs={12} sm={6} md={3}>
             <div className="container">
               <div className={`flip-card ${questionData.isFlipped ? "flipped" : ""}`}>
                 <div className="flip-card-inner">
-                  <div className="flip-card-front"  onClick={() => handleFlip(questionData.id)}>
+                  <div className="flip-card-front"  onClick={() => handleFlip(questionData._id)}>
                     <div className="card-content" >
                       {/* <Card sx={{ width: 200, height: 200 }} className="flip-card-front"  onClick={() => handleFlip(questionData.id)}>  */}
                         <CardContent >
@@ -61,7 +62,7 @@ const Quiz = () => {
                             <h2>Question: {questionData.question}</h2>
                             <h3>Possible Answers:</h3>
                             <ul>
-                              {questionData.possibleAnsers.map((answer, index) => (
+                              {questionData.possibleAnswers.map((answer, index) => (
                                 <li key={index}>{answer}</li>
                               ))}
                             </ul>
@@ -71,7 +72,7 @@ const Quiz = () => {
                       {/* </Card> */}
                     </div>
                   </div>
-                  <div className="flip-card-back"  onClick={() => handleFlip(questionData.id)}>
+                  <div className="flip-card-back"  onClick={() => handleFlip(questionData._id)}>
                     <div className="card-content" >
                       
                       <CardContent>
