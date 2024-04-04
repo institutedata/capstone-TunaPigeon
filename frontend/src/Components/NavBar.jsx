@@ -27,10 +27,10 @@ export default function NavBar() {
         <nav className="NavBar" >
              <ThemeProvider theme={blackTheme}>
             <Tabs value={selectedTab} onChange={handleChange} indicatorColor="transparent">
-                <Tab label="Home" component={Link} to="/" />
-                <Tab label="Characters" component={Link} to="/characters" />
-                <Tab label="Quiz" component={Link} to="/quiz" />
-                <Tab label="Jasmine Dragon" component={Link} to="/jasminedragon" />
+                <Tab label="Home" component={Link} to="/" sx={{ fontSize: "15px" }}/>
+                <Tab label="Characters" component={Link} to="/characters" sx={{ fontSize: "15px" }}/>
+                <Tab label="Quiz" component={Link} to="/quiz" sx={{ fontSize: "15px" }}/>
+                <Tab label="Jasmine Dragon" component={Link} to="/jasminedragon" sx={{ fontSize: "15px" }} />
             </Tabs>
             </ThemeProvider>
         </nav>

@@ -3,10 +3,17 @@
     top: 20px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 100; /* Ensure the image is above the navbar */
     display: grid;
     grid-template-columns: auto 1fr auto; /* Three columns: left image, text, right image */
     align-items: center; /* Vertically center the items */
+
+  }
+
+  .avatar-3d-text {
+    color: black;
+    text-shadow: 
+    -2px -2px 2px rgba(255, 255, 255, 0.5), /* Top left */
+    2px 2px 2px rgba(255, 255, 255, 0.5); /* Bottom right */
   }
   
   .Logo img {
