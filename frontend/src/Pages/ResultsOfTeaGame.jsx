@@ -1,8 +1,7 @@
 import Dialog from "@mui/material/Dialog";
 import Button from "@mui/material/Button";
-import DialogContentText from '@mui/material/DialogContentText';
 import { DialogContent , Typography, Grid} from '@mui/material';
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import axios from "axios";
 import JasmineDragon from "./JasmineDragon";
 import { blackTheme } from '../themes/blackTheme';

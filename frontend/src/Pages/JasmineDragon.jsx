@@ -3,12 +3,11 @@ import ParentComponent from './ParentComponent';
 import Dialog from "@mui/material/Dialog";
 import Button from "@mui/material/Button";
 import DialogContentText from '@mui/material/DialogContentText';
-import { Grid, DialogContent, Typography, DialogTitle } from '@mui/material';
-import React, { useState, useEffect } from "react";
+import { Grid, DialogContent, Typography,} from '@mui/material';
+import React, { useState} from "react";
 import "./border.css";
 import Heading from '../Heading';
 import "./centeredImage.css"
-import { blackTheme } from '../themes/blackTheme';
 import { ThemeProvider } from '@emotion/react'
 import { whiteTheme } from '../themes/whiteTheme'
 import axios from 'axios';

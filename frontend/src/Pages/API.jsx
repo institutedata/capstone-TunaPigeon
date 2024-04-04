@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import "../API.css";
 
@@ -74,20 +74,39 @@ const APIData = ({ onNameChange, onTeaValidationSuccess, TeaReceieved, TeaIngred
         characters = response.data;
       } while (characters.length !== 1);
 
+
       // Extracting name and photoUrl from the response data
       const { name, photoUrl } = characters[0];
-      // Setting name and photoUrl in state
-      setName(name);
-      onNameChange(name);
-      setPhotoUrl(photoUrl);
-      //calculates using listOfTea length
-      const randomIndex = Math.floor(Math.random() * ListOftea.length);
-      // Get the name of the tea at the random index
-      const randomTea = ListOftea[randomIndex].name;
-      // Set the selected tea in state
-      setSelectedTea(randomTea);
 
-      setLoading(false);
+      try {
+        // Check if the photoUrl is valid by making a HEAD request
+        const imageResponse = await axios.head(photoUrl);
+
+        // If the image exists (status code 200), proceed
+        if (imageResponse.status === 200) {
+            // Setting name and photoUrl in state
+            setName(name);
+            onNameChange(name);
+            setPhotoUrl(photoUrl);
+
+            //calculates using listOfTea length
+            const randomIndex = Math.floor(Math.random() * ListOftea.length);
+            // Get the name of the tea at the random index
+            const randomTea = ListOftea[randomIndex].name;
+            // Set the selected tea in state
+            setSelectedTea(randomTea);
+
+            setLoading(false);
+        } else {
+            // If the image is broken or does not exist, log an error and retry fetching a new character
+            console.error('Broken image URL:', photoUrl);
+            fetchNewCharacter(); // Retry fetching a new character
+        }
+    } catch (error) {
+        // If an error occurs during the HEAD request (e.g., network error), log the error and retry fetching a new character
+        console.error(`Error fetching image for ${name}:`, error);
+        fetchNewCharacter(); // Retry fetching a new character
+    }
     } catch (error) {
       console.error('Error fetching data:', error);
       setLoading(false);
@@ -170,6 +189,7 @@ const APIData = ({ onNameChange, onTeaValidationSuccess, TeaReceieved, TeaIngred
               </div>
 
               <button type="submit">Enter Order</button>
+              
             </form>
             {showError && <div>Please enter in the correct tea</div>}
 

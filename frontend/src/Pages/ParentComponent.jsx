@@ -1,7 +1,6 @@
-import React, { useState, useEffect} from 'react';
+import { useState} from 'react';
 import APIData from './API';
 // import Tea from './Tea';
-import Heading from '../Heading';
 import RowAndColumnSpacing from './InteractiveTeaGame';
 import ResultsOfTeaGame from './ResultsOfTeaGame';
 import PreparationPage from './PreparationPage';

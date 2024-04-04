@@ -3,8 +3,6 @@ import Home from '../Pages/Home';
 import CharacterList from '../Pages/Characters';
 import Quiz from '../Pages/Quiz';
 import PageNotFound from '../Pages/PageNotFound';
-import APIData from '../Pages/API';
-import ParentComponent from '../Pages/ParentComponent';
 import JasmineDragon from '../Pages/JasmineDragon';
 function AppRoutes(props) {
     return(
