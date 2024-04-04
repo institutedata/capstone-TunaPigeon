@@ -1,6 +1,6 @@
 .Logo {
     position: absolute;
-    top: 50px;
+    top: 20px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 100; /* Ensure the image is above the navbar */
@@ -14,7 +14,10 @@
     width: 100%; /* Adjust image width as needed */
   }
 
-.left-image,
-.right-image {
+.left-image{
+
   margin-right: 50px; /* Add some spacing between the images and the text */
+}
+.right-image {
+  margin-left: 50px; /* Add some spacing between the images and the text */
 }
