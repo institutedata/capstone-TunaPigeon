@@ -6,6 +6,7 @@ import axios from "axios";
 import JasmineDragon from "./JasmineDragon";
 import { blackTheme } from '../themes/blackTheme';
 import { ThemeProvider } from '@emotion/react'
+import { whiteTheme } from "../themes/whiteTheme";
 
 const ResultsOfTeaGame = ({ PhotoURL, name, nextCustomer, submissionStatus, score, restartGame, playerName, MainMenu }) => {
 
@@ -81,7 +82,7 @@ const ResultsOfTeaGame = ({ PhotoURL, name, nextCustomer, submissionStatus, scor
               <button onClick={handleNextCustomer}>Next customer</button>
               <p>Current score: {score}</p>
               
-              <ThemeProvider theme={blackTheme}>
+              <ThemeProvider theme={whiteTheme}>
               <Button variant="outlined" onClick={handleClickOpenInstructions}>
                 Previous orders
               </Button>
@@ -127,14 +128,14 @@ const ResultsOfTeaGame = ({ PhotoURL, name, nextCustomer, submissionStatus, scor
               <button onClick={handleMainMenu}>Back to Main Menu</button>
 
             </p><p>Final score: {score}</p>
-            <ThemeProvider theme={blackTheme}>
+            <ThemeProvider theme={whiteTheme}>
               <Button variant="outlined" onClick={handleClickOpenInstructions} >
-                Previous orders
+                All Orders
               </Button>
               <Dialog open={open} onClose={handleCloseInstructions}>
 
                 <Typography variant="h6" align="center">
-                  Orders
+                 All Orders
                 </Typography>
 
                 <DialogContent>

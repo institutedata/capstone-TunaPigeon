@@ -114,8 +114,9 @@ export default function RowAndColumnSpacing({ Tea, Ingredients, CorrectIngredien
 
   
   return (
+    <div style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)',  border: '1px solid black',  padding: '50px'}}>
     <div style={{ display: 'flex', alignItems: 'flex-start' }}>
-      <div style={{ marginRight: '20px' }}>
+      <div style={{ marginRight: '20px' , marginTop: '40px'}}>
         <h3>Ingredients needed for {Tea}</h3>
         <ul>
           {CorrectIngredients.map((ingredient, index) => (
@@ -125,12 +126,12 @@ export default function RowAndColumnSpacing({ Tea, Ingredients, CorrectIngredien
           ))}
         </ul>
 
-        <h3>Selected Ingredients:</h3>
+        {/* <h3>Selected Ingredients:</h3>
         <ul>
           {selectedIngredientsArray.map((ingredient, index) => (
             <li key={index}>{ingredient}</li>
           ))}
-        </ul>
+        </ul> */}
       </div>
 
       <div>
@@ -150,9 +151,10 @@ export default function RowAndColumnSpacing({ Tea, Ingredients, CorrectIngredien
         <button onClick={handleSubmit}  disabled={selectedIndices.length !== 4 }>Submit</button>
         {showError && <div>Ingredients not correct</div>}
       </div>
-      <div>
+      <div style={{ marginLeft: '20px' , marginTop: '40px'}}>
         <h3>Timer: {timer} seconds</h3>
       </div>
+    </div>
     </div>
   );
 }

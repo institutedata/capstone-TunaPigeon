@@ -4,10 +4,17 @@
     left: 50%;
     transform: translateX(-50%);
     z-index: 100; /* Ensure the image is above the navbar */
-    
+    display: grid;
+    grid-template-columns: auto 1fr auto; /* Three columns: left image, text, right image */
+    align-items: center; /* Vertically center the items */
   }
   
   .Logo img {
     display: block;
     width: 100%; /* Adjust image width as needed */
   }
+
+.left-image,
+.right-image {
+  margin-right: 50px; /* Add some spacing between the images and the text */
+}
