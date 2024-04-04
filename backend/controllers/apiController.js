@@ -1,5 +1,5 @@
 "use strict";
-
+const axios = require('axios');
 let dbController = require('./dbController')
 
 const API = (res) => {
@@ -8,55 +8,67 @@ const API = (res) => {
   let page = 1; // Page number to start with
   let allCharacters = []; // Array to store all characters
 
-  const fetchCharacters = () => 
-    { 
-      // fetches all characters from the api
+  const fetchCharacters = () => { 
     fetch(`https://last-airbender-api.fly.dev/api/v1/characters?perPage=${perPage}&page=${page}`, {
-      method: 'GET',
+        method: 'GET',
     })
-
-      .then(response => {
+    //checks if response is ok
+    .then(response => {
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+            throw new Error('Network response was not ok');
         }
         return response.json();
-      })
-      //with each data/character, grab and map just the name and photoURL
-      .then(data => {
-
-        const validCharacters = data.filter(character =>
-          character.photoUrl
-        );
-        const characters = validCharacters.map(character => {
-          return {
-            // _id: character._id,
-            name: character.name,
-           photoUrl: character.photoUrl,
-           affiliation: character.affiliation,
-          allies: character.allies,
-          enemies: character.enemies
-          };
+    })
+    .then(data => {
+      // maps through each character to grab the required fields
+        const characterRequests = data.map(async character => {
+            try {
+                const response = await axios.head(character.photoUrl);
+                // makes sure the response is 200 so that it filters out the broken images
+                if (response.status === 200) {
+                    return {
+                        name: character.name,
+                        photoUrl: character.photoUrl,
+                        affiliation: character.affiliation,
+                        allies: character.allies,
+                        enemies: character.enemies
+                    };
+                } else {
+                  //let us know which character is missing an image
+                    console.log(`${character.name}: Picture not found, skipping...`);
+                    return null;
+                }
+            } catch (error) {
+              // lets us know the error 
+                console.error(`${character.name}: Error occurred while fetching picture, skipping...`);
+                console.error(error.message);
+                return null;
+            }
         });
-        //storing all characters into array
-        allCharacters = allCharacters.concat(characters)
-        //checks if theres pages left with 100 characters, and will keep looping and running the function
-        if (data.length === perPage) {
-          page++;
-          fetchCharacters(); // Fetch next page recursively
-        } 
-        else {
-          // If no more pages, send all characters in the response
-          dbController.saveCharactersToDatabase(allCharacters);
-          res.send({ result: 200, characters: allCharacters });
-        }
 
-      })
-      .catch(err => {
+        // grabs all characters and filter out all the null ones out
+        Promise.all(characterRequests)
+        .then(characters => {
+            const filteredCharacters = characters.filter(character => character !== null);
+            // adds all to an array
+            allCharacters = allCharacters.concat(filteredCharacters);
+            // loops through if there are still pages with characters (if there are 20 on the page then continue)
+            if (data.length === perPage) {
+                page++;
+                fetchCharacters();
+            } else {
+              // once done , it will save all to database
+                dbController.saveCharactersToDatabase(allCharacters);
+                res.send({ result: 200, characters: allCharacters });
+            }
+        });
+    })
+    .catch(err => {
         console.log(err);
-        res.send({ result: 500, error: err.message })
-        
-      })
-  }
+        res.send({ result: 500, error: err.message });
+    });
+};
+
   fetchCharacters();
 }
 
@@ -67,14 +79,14 @@ const fetchQuestions = async(res)  => {
     fetch('https://api.sampleapis.com/avatar/questions', {
       method: 'GET',
     })
-
+      //checks if network is ok
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
         return response.json();
       })
-      //with each data/character, grab and map just the name and photoURL
+      //with each question, grab all the fields
       .then(data => {
         const questions = data.map(question => {
           return {
@@ -87,9 +99,7 @@ const fetchQuestions = async(res)  => {
         });
         //storing all characters into array
         allQuestions = allQuestions.concat(questions)
-        //checks if theres pages left with 100 characters, and will keep looping and running the function
-
-          // If no more pages, send all characters in the response
+        //sends the array to be saved into database
           dbController.saveQuestionsToDatabase(allQuestions);
           res.send({ result: 200, questions: allQuestions });
 

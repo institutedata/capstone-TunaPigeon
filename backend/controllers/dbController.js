@@ -6,7 +6,7 @@ const saveCharactersToDatabase = (characters) => {
 };
 
 const saveQuestionsToDatabase = (questions) => {
-    //inserts all the characters found from the api into the database
+    //inserts all the question found from the api into the database
     return Models.Question.insertMany(questions);
 };
 

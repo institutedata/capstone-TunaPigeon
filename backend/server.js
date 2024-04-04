@@ -3,14 +3,7 @@ const app = express();
 const cors = require('cors');
 require("dotenv").config();
 let dbConnect = require("./dbConnect");
-// app.use(cors()); http://localhost:8080/database/characters
 
-
-// app.use((req, res, next) => {
-//     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
-//     next();
-//   });
-// parse requests of content-type - application / json
 const serverCORS = {
     origin: 'http://localhost:5173',
     allowedHeaders: ['Content-Type'],

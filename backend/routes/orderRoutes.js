@@ -1,7 +1,7 @@
 let express = require("express");
 let router = express.Router();
 let Controllers = require("../controllers"); // index.js
-// Adds a GET route to grab data from database; orders collection
+// Adds a GET route to grab orders from database; orders collection
 router.get('/', (req, res) => {
    Controllers.orderController.getOrders(res);
 })

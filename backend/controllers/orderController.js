@@ -17,20 +17,14 @@ const getOrders = (res) => {
         })
 }
 const createOrder = async (data, res) => {
-
-
+    //create order with the data 
     new Models.Order(data).save()
         .then(data => res.send({ result: 200, order: data }))
         .catch(err => {
             console.log(err);
             res.send({ result: 500, error: err.message })
         })
-
-
-
-
 }
-
 
 
 const updateOrder = async (req, res) => {
@@ -39,7 +33,7 @@ const updateOrder = async (req, res) => {
     try {
         // Find the order by ID and update the status
         const updatedOrder = await Models.Order.findByIdAndUpdate(id, { status: 'Completed' }, { new: true });
-
+        //if order doesn't exist
         if (!updatedOrder) {
             return res.status(404).json({ message: 'Order not found', id });
         }

@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const characterSchema = new Schema({
-    //id: {type: String, trim: true, unique: true},
     photoUrl: { type: String, trim: true },
     name: { type: String, trim: true },
     affiliation: {type: String, trim: true },
@@ -14,7 +13,6 @@ const characterSchema = new Schema({
 }
 
 );
-
 
 module.exports = mongoose.model("character", characterSchema);
 

@@ -4,8 +4,4 @@ module.exports = {
    Character: require('./character'),
    Score: require('./score'),
    Question: require('./question')
-
-   
-   
-
 };

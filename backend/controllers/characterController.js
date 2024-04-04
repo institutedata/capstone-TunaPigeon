@@ -7,7 +7,7 @@ const getCharacters = (res, perPage, page) => {
     Models.Character.find({})
         .skip(offset) // Skip characters based on the offset
         .limit(perPage) // Limit the number of characters per page
-        .then(data => res.json(data))
+        .then(data => res.json(data)) //sends data directly
         .catch(err => {
             console.log(err);
             res.status(500).json({ result: 500, error: err.message });
