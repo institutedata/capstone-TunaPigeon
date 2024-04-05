@@ -385,8 +385,8 @@ The software has met most, if not all the objectives. The main objectives were t
 - Github :  Version control system and code repository for collaboration.
 
 **Others**
-- CSS
-- HTML
+- CSS : Cascading Style Sheets for styling the frontend components.
+- HTML : Hypertext Markup Language for structuring web pages.
 
 Link to Github: https://github.com/institutedata/capstone-TunaPigeon
 
