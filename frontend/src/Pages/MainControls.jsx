@@ -1,13 +1,12 @@
 import { useState} from 'react';
-import APIData from './API';
-// import Tea from './Tea';
+import APIData from './CharacterGenerator';
 import RowAndColumnSpacing from './InteractiveTeaGame';
 import ResultsOfTeaGame from './ResultsOfTeaGame';
 import PreparationPage from './PreparationPage';
 import ClockInPage from './ClockInPage';
 import axios from 'axios';
 
-
+//main controls for the teashop game
 const ParentComponent = () => {
   const [characterName, setCharacterName] = useState('');
   const [selectedTea, setSelectedTea] = useState('');
@@ -102,7 +101,7 @@ const handleRestartGame = () => {
   setShowAPIData(true); // Hide APIData
   setScore(0)
 };
-
+//send data as order to the backend
 const sendDataToBackend = (characterName, receivedTea) => {
   // Define the data object with the required fields
   const data = {
@@ -126,6 +125,7 @@ const sendDataToBackend = (characterName, receivedTea) => {
     });
 };
 
+//takes name entered and goes to next phase
 const handlePlayerName = (playerName) => {
   setPlayerName(playerName);
   setShowClockIn(false);
@@ -133,6 +133,7 @@ const handlePlayerName = (playerName) => {
 
 };
 
+// send score data to backend
 const sendScoreToBackend = (playerName, score) => {
   // Define the data object with the required fields
   const data = {

@@ -1,5 +1,5 @@
 import './Logo.css';
-
+// logo
 const Logo = () => {
     return (
         <div className="Logo">

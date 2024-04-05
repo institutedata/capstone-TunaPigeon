@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import "../API.css";
+import "./JasmineDragonBox.css";
 
 //data for tea
 const ListOftea = [
@@ -84,29 +84,29 @@ const APIData = ({ onNameChange, onTeaValidationSuccess, TeaReceieved, TeaIngred
 
         // If the image exists (status code 200), proceed
         if (imageResponse.status === 200) {
-            // Setting name and photoUrl in state
-            setName(name);
-            onNameChange(name);
-            setPhotoUrl(photoUrl);
+          // Setting name and photoUrl in state
+          setName(name);
+          onNameChange(name);
+          setPhotoUrl(photoUrl);
 
-            //calculates using listOfTea length
-            const randomIndex = Math.floor(Math.random() * ListOftea.length);
-            // Get the name of the tea at the random index
-            const randomTea = ListOftea[randomIndex].name;
-            // Set the selected tea in state
-            setSelectedTea(randomTea);
+          //calculates using listOfTea length
+          const randomIndex = Math.floor(Math.random() * ListOftea.length);
+          // Get the name of the tea at the random index
+          const randomTea = ListOftea[randomIndex].name;
+          // Set the selected tea in state
+          setSelectedTea(randomTea);
 
-            setLoading(false);
+          setLoading(false);
         } else {
-            // If the image is broken or does not exist, log an error and retry fetching a new character
-            console.error('Broken image URL:', photoUrl);
-            fetchNewCharacter(); // Retry fetching a new character
+          // If the image is broken or does not exist, log an error and retry fetching a new character
+          console.error('Broken image URL:', photoUrl);
+          fetchNewCharacter(); // Retry fetching a new character
         }
-    } catch (error) {
+      } catch (error) {
         // If an error occurs during the HEAD request (e.g., network error), log the error and retry fetching a new character
         console.error(`Error fetching image for ${name}:`, error);
         fetchNewCharacter(); // Retry fetching a new character
-    }
+      }
     } catch (error) {
       console.error('Error fetching data:', error);
       setLoading(false);
@@ -123,7 +123,7 @@ const APIData = ({ onNameChange, onTeaValidationSuccess, TeaReceieved, TeaIngred
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     // Get the value entered in the tea input field
     const enteredTea = e.target.elements.tea?.value?.trim().toLowerCase();
 
@@ -167,7 +167,7 @@ const APIData = ({ onNameChange, onTeaValidationSuccess, TeaReceieved, TeaIngred
 
       <div className="JasmineTeaBox">
 
-        {/* Render the name and photoUrl or loading message */}
+        {/* loading feature*/}
         {loading ? (<p>Next customer...</p>) : (
           <>
             <p>Name: {name}</p>
@@ -175,13 +175,10 @@ const APIData = ({ onNameChange, onTeaValidationSuccess, TeaReceieved, TeaIngred
             <p>"I would like to order {selectedTea}"</p>
             <form onSubmit={handleSubmit}>
               <div>
-                <label>Name:{name}
-
-                </label>
+                <label>Name:{name}</label>
               </div>
               <div>
                 <label>Tea:
-                  {/* <input name="latinName" value={latinname} onChange={(e) => setLatinName(e.target.value)} /> */}
                   <input name="tea" />
 
                 </label>
@@ -189,20 +186,11 @@ const APIData = ({ onNameChange, onTeaValidationSuccess, TeaReceieved, TeaIngred
               </div>
 
               <button type="submit">Enter Order</button>
-              
+
             </form>
             {showError && <div>Please enter in the correct tea</div>}
-
-
-
-            <p>
-              {/* <button onClick={fetchNewCharacter}>Generate New Character</button> */}
-
-            </p>
           </>
         )}
-
-
       </div>
     </>
   );

@@ -1,12 +1,12 @@
 
-import ParentComponent from './ParentComponent';
+import ParentComponent from './MainControls';
 import Dialog from "@mui/material/Dialog";
 import Button from "@mui/material/Button";
 import DialogContentText from '@mui/material/DialogContentText';
 import { Grid, DialogContent, Typography,} from '@mui/material';
 import React, { useState} from "react";
 import "./border.css";
-import Heading from '../Heading';
+import Heading from '../Components/Heading';
 import "./centeredImage.css"
 import { ThemeProvider } from '@emotion/react'
 import { whiteTheme } from '../themes/whiteTheme'
@@ -49,7 +49,7 @@ const JasmineDragon = ({ text }) => {
   }
 
 
-
+// grabs the scores
   const fetchScores = () => {
     axios.get('http://localhost:8080/highscore')
       .then(response => {
@@ -73,7 +73,7 @@ const JasmineDragon = ({ text }) => {
   }
 
 
-
+  // uses grids to layout the buttons and dialog for the highscores and menu
   return (
     <div>
       {!showParentComponent && (

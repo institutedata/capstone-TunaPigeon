@@ -50,7 +50,7 @@ export default function RowAndColumnSpacing({ Tea, Ingredients, CorrectIngredien
     return () => clearInterval(timerId);
   }, [isRunning, timer, onSubmit]);
 
-  
+  //when clicking ingredients
   const toggleIngredient = (ingredient, index) => {
     setShowError(false);
 
@@ -81,12 +81,9 @@ export default function RowAndColumnSpacing({ Tea, Ingredients, CorrectIngredien
     //if correct do this
     if (isCorrectSelection) {
       console.log("IT MATCHES")
+      //send these data and run the function
       setIsRunning(false);
       handleUpdateStatus();
-
-      
-
-
       onSubmit(isCorrect);
     }
     else {
@@ -96,6 +93,7 @@ export default function RowAndColumnSpacing({ Tea, Ingredients, CorrectIngredien
 
   };
 
+  //updates the status of the orders 
   const handleUpdateStatus = async () => {
     try {
         const response = await axios.put(`http://localhost:8080/jasminedragon/orders/${orderId}`);
@@ -126,12 +124,6 @@ export default function RowAndColumnSpacing({ Tea, Ingredients, CorrectIngredien
           ))}
         </ul>
 
-        {/* <h3>Selected Ingredients:</h3>
-        <ul>
-          {selectedIngredientsArray.map((ingredient, index) => (
-            <li key={index}>{ingredient}</li>
-          ))}
-        </ul> */}
       </div>
 
       <div>

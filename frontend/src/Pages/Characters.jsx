@@ -10,7 +10,8 @@ const CharacterList = () => {
   const [totalCharacters, setTotalCharacters] = useState(0);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [loading, setLoading] = useState(true);
-  
+
+  //grabs characters
   useEffect(() => {
     const fetchCharacters = async () => {
       try {
@@ -38,11 +39,13 @@ const CharacterList = () => {
 
   console.log("Total Characters:", totalCharacters);
 
+  //if clicked, expands character
   const handleCharacterClick = (index) => {
     setExpandedCharacter(index);
     setDialogOpen(true);
   };
 
+  //closes expanded character
   const handleCloseDialog = () => {
     setDialogOpen(false);
   };
@@ -64,14 +67,15 @@ const CharacterList = () => {
 
   return (
     <div>
+      {/* loading feature*/}
       {loading ? (<p>Loading characters...</p>) : (
         <>
           <h1>Character List</h1>
           <p>Explore the list of characters from both "The Last Airbender" and "The Legend of Korra"</p>
-          <Grid container spacing={2} style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)',  border: '1px solid black',  padding: '50px'}}>
+          <Grid container spacing={2} style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)', border: '1px solid black', padding: '50px' }}>
             {allCharacters.map((character, index) => (
               <Grid key={index} item xs={12} sm={6} md={3}>
-                <div style={{ border: '1px solid black', padding: '10px', textAlign: 'center' ,backgroundColor: 'white', color: 'black'}} onClick={() => handleCharacterClick(index)}>
+                <div style={{ border: '1px solid black', padding: '10px', textAlign: 'center', backgroundColor: 'white', color: 'black' }} onClick={() => handleCharacterClick(index)}>
                   <img src={character.photoUrl} alt={character.name} style={{ height: '100px' }} />
                   <div>{character.name}</div>
                 </div>

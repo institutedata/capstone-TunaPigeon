@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import "../API.css";
+import "./JasmineDragonBox.css";
 
 
 const PreparationPage = ({onTimerEnd, TeaIngredients, Tea}) => {

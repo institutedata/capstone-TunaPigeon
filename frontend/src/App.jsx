@@ -2,7 +2,7 @@
 import './App.css'
 import AppRoutes from './Routes/AppRoutes'
 import NavBar from './Components/NavBar'
-import Logo from './Logo'
+import Logo from './Components/Logo'
 
 function App() {
 

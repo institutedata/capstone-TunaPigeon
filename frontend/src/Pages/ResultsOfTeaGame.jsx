@@ -35,7 +35,7 @@ const ResultsOfTeaGame = ({ PhotoURL, name, nextCustomer, submissionStatus, scor
 
 
 
-
+  //grabs orders from database
   const fetchData = () => {
     axios.get('http://localhost:8080/jasminedragon')
       .then(response => {
@@ -61,12 +61,10 @@ const ResultsOfTeaGame = ({ PhotoURL, name, nextCustomer, submissionStatus, scor
     setOpen(false);
   }
 
+  // goes back to main menu
   const handleMainMenu = () => {
     setShowJasmineDragon(true);
   };
-
-
-
 
 
   return (
@@ -77,7 +75,6 @@ const ResultsOfTeaGame = ({ PhotoURL, name, nextCustomer, submissionStatus, scor
             {submissionStatus === 'success' && 
             <div><p><img src={PhotoURL} alt="Character" style={{ height: '200px' }} /></p><p>{name}: "Thank you!"</p>
             
-              {/* <button>Previous orders</button> */}
               
               <button onClick={handleNextCustomer}>Next customer</button>
               <p>Current score: {score}</p>
@@ -92,7 +89,7 @@ const ResultsOfTeaGame = ({ PhotoURL, name, nextCustomer, submissionStatus, scor
                 </Typography>
 
                 <DialogContent>
-                  {/* Grid layout to display high scores */}
+                  {/* Grid layout to display orders */}
                   <Grid container spacing={2}>
                     {/* Header row */}
                     <Grid item xs={4}>
@@ -105,7 +102,7 @@ const ResultsOfTeaGame = ({ PhotoURL, name, nextCustomer, submissionStatus, scor
                       <Typography variant="h6">Status</Typography>
                     </Grid>
 
-                    {/* High score entries */}
+                    {/* Orders entries */}
                     {orders.map(order => (
                       <React.Fragment key={order._id}>
                         <Grid item xs={4}>
@@ -170,7 +167,6 @@ const ResultsOfTeaGame = ({ PhotoURL, name, nextCustomer, submissionStatus, scor
                 </DialogContent>
               </Dialog>
               </ThemeProvider></div>}
-
 
           </>
         </div>

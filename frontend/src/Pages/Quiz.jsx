@@ -9,16 +9,17 @@ const Quiz = () => {
   const [questions, setQuestions] = useState([]);
   const [loading, setLoading] = useState(true);
 
-
+// flips the clicked card by the id
   const handleFlip = (id) => {
     setQuestions(prevQuestions =>
       prevQuestions.map(question =>
+        // if else statement - if it matches with id
         question._id === id ? { ...question, isFlipped: !question.isFlipped } : question
       )
     );
   };
 
-
+  // grabs all the questions
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
@@ -43,7 +44,7 @@ const Quiz = () => {
         <>
       <h1>Quiz</h1>
       <p>Test your knowledge on the original series!</p>
-
+        {/* uses grids to layout the cards */}
       <Grid container spacing={2} style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)',  border: '1px solid black', paddingBottom: '56px'}}>
       <Grid item xs={12}>
       *only questions from the original show (Avatar: The Last Airbender)
@@ -55,7 +56,6 @@ const Quiz = () => {
                 <div className="flip-card-inner">
                   <div className="flip-card-front"  onClick={() => handleFlip(questionData._id)}>
                     <div className="card-content" >
-                      {/* <Card sx={{ width: 200, height: 200 }} className="flip-card-front"  onClick={() => handleFlip(questionData.id)}>  */}
                         <CardContent >
                           <div>
                             <h2>Question: {questionData.question}</h2>
@@ -68,7 +68,6 @@ const Quiz = () => {
                           </div>
                           
                         </CardContent>
-                      {/* </Card> */}
                     </div>
                   </div>
                   <div className="flip-card-back"  onClick={() => handleFlip(questionData._id)}>

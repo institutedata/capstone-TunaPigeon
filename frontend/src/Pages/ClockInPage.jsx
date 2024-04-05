@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import "../API.css";
+import "./JasmineDragonBox.css";
 
 const ClockInPage = ({ PlayerNameReceieved }) => {
     const [error, setError] = useState('');
