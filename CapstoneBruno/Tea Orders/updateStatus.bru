@@ -1,0 +1,17 @@
+meta {
+  name: updateStatus
+  type: http
+  seq: 3
+}
+
+put {
+  url: http://localhost:8080/jasminedragon/orders/660539b248c493cbf1af139a
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "status": "COMPLETED"
+  }
+}
