@@ -28,7 +28,7 @@ const PreparationPage = ({onTimerEnd, TeaIngredients, Tea}) => {
         <h1>Loading order...</h1>
         <h2>Get ready to create your tea in {timer}</h2>
         <h3>Ingredients needed for {Tea}</h3>
-        
+        {/* shows the ingredients for the tea */}
           {TeaIngredients.map((ingredient, index) => (
             <li key={index}>
               {ingredient}

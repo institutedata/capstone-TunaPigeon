@@ -24,10 +24,11 @@ const ClockInPage = ({ PlayerNameReceieved }) => {
     };
 
     return (
-      
+        // uses this class to create a box around
         <div className='JasmineTeaBox'>
             <h1>Welcome!</h1>
             <h3>Enter your name below:</h3>
+            {/* simple form to take in name*/}
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>Name:

@@ -79,6 +79,8 @@ const JasmineDragon = ({ text }) => {
       {!showParentComponent && (
         <>
           <Heading></Heading>
+        {/* uses this class and styles to create a box around and a border */}
+
           <div className='dynamic-div' style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)', border: '1px solid black', padding: '50px' }}>
             <img src="https://static1.cbrimages.com/wordpress/wp-content/uploads/2021/01/avatar-iroh-pai-sho-tile-e1611880650101.jpg" alt="Description of the image" width="500px" />
 
@@ -88,6 +90,8 @@ const JasmineDragon = ({ text }) => {
 
               <Grid item xs={12} md={4}>
                 <div>
+                  {/* uses this to change theme */}
+                  {/* uses this to create dialog to pop up with help info */}
                   <ThemeProvider theme={whiteTheme}>
                     <Button variant="outlined" onClick={handleClickOpenInstructions}>
                       How to play
@@ -125,16 +129,18 @@ const JasmineDragon = ({ text }) => {
                       </DialogContent></Dialog></ThemeProvider></div>
               </Grid>
 
-
+            {/* opens shops */}
               <Grid item xs={12} md={4}>
                 <button onClick={handleOpenShop}>Open Shop</button>
               </Grid>
 
 
-
+             {/* shows the highscores */}
               <Grid item xs={12} md={4}>
 
                 <div>
+                  {/* uses this to change theme */}
+                  {/* uses this to create dialog to pop up with highscores */}
                   <ThemeProvider theme={whiteTheme}>
                     <Button variant="outlined" onClick={handleClickOpenHighscore}>
 
@@ -162,6 +168,8 @@ const JasmineDragon = ({ text }) => {
                               <Typography variant="h6">Timestamp</Typography>
                             </Grid>
                             {/* High score entries */}
+                      {/* react fragment was used to group the children elements without an extra dom element */}
+
                             {topScores.map((score, index) => (
                               <React.Fragment key={index}>
                                 <Grid item xs={4}>

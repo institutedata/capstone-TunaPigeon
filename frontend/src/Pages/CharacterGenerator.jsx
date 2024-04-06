@@ -156,11 +156,7 @@ const APIData = ({ onNameChange, onTeaValidationSuccess, TeaReceieved, TeaIngred
       console.error('Tea not found:', enteredTea);
     }
 
-
   };
-
-
-
 
   return (
     <>
@@ -170,9 +166,11 @@ const APIData = ({ onNameChange, onTeaValidationSuccess, TeaReceieved, TeaIngred
         {/* loading feature*/}
         {loading ? (<p>Next customer...</p>) : (
           <>
+          {/* using variables set*/}
             <p>Name: {name}</p>
             <img src={photoUrl} alt="Character" style={{ height: '200px' }} />
             <p>"I would like to order {selectedTea}"</p>
+            {/* submit will trigger tis function*/}
             <form onSubmit={handleSubmit}>
               <div>
                 <label>Name:{name}</label>

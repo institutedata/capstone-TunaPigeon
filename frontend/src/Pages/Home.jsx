@@ -1,7 +1,7 @@
 
 import Grid from '@mui/material/Grid';
 
-//uses grid for homepage
+//uses grid for homepage and styles for each div
 
 const HomePage = () => {
   return (

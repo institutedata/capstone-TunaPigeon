@@ -158,7 +158,7 @@ const sendScoreToBackend = (playerName, score) => {
   console.log(characterName)
   return (
     <div>
-    {/* <Heading></Heading> */}
+      {/* all these for the interactive tea game, to switch through different pages/phases of the game */}
     <div className="ParentComponent">
     {showClockIn && <ClockInPage PlayerNameReceieved={handlePlayerName}/>}
     {showPreparations &&<PreparationPage onTimerEnd={TeaGameStart} TeaIngredients={correctTeaIngredients} Tea={receivedTea}/>}  

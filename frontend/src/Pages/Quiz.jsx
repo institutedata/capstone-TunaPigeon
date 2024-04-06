@@ -52,6 +52,7 @@ const Quiz = () => {
         {questions.map((questionData) => (
           <Grid key={questionData._id} item xs={12} sm={6} md={3}>
             <div className="container">
+              {/* using css animation in combination with these divs to create a flipping card */}
               <div className={`flip-card ${questionData.isFlipped ? "flipped" : ""}`}>
                 <div className="flip-card-inner">
                   <div className="flip-card-front"  onClick={() => handleFlip(questionData._id)}>

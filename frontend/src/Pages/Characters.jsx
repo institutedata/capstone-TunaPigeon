@@ -72,6 +72,7 @@ const CharacterList = () => {
         <>
           <h1>Character List</h1>
           <p>Explore the list of characters from both "The Last Airbender" and "The Legend of Korra"</p>
+          {/*using grids to layout the character icons*/}
           <Grid container spacing={2} style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)', border: '1px solid black', padding: '50px' }}>
             {allCharacters.map((character, index) => (
               <Grid key={index} item xs={12} sm={6} md={3}>
@@ -82,14 +83,15 @@ const CharacterList = () => {
               </Grid>
             ))}
           </Grid>
+          {/* buttons to go to next/previous page*/}
           <div>
             <button onClick={prevPage} disabled={currentPage === 1}>Previous</button>
             <button onClick={nextPage} disabled={totalCharacters < 20}>Next</button>
           </div>
+          {/* dialog to pop up with character information*/}
           <Dialog open={dialogOpen} onClose={handleCloseDialog}>
             {expandedCharacter !== null && (
               <>
-
                 <DialogTitle>{allCharacters[expandedCharacter].name}</DialogTitle>
                 <DialogContent >
                   <div className="centeredImage">

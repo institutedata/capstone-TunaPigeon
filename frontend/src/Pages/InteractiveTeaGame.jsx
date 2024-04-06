@@ -110,8 +110,10 @@ export default function RowAndColumnSpacing({ Tea, Ingredients, CorrectIngredien
   const selectedIngredientsArray = selectedIndices.map((index) => selectedIngredients[index]);
   const isCorrectSelection = selectedIngredientsArray.slice().sort().toString() === CorrectIngredients.slice().sort().toString();
 
-  
-  return (
+  return ( 
+  // using divs to layout this onto the right side
+       
+  // uses this style to create a box around
     <div style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)',  border: '1px solid black',  padding: '50px'}}>
     <div style={{ display: 'flex', alignItems: 'flex-start' }}>
       <div style={{ marginRight: '20px' , marginTop: '40px'}}>
@@ -127,6 +129,7 @@ export default function RowAndColumnSpacing({ Tea, Ingredients, CorrectIngredien
       </div>
 
       <div>
+        {/* grids for the buttons*/}
         <h3>Tea Ingredients:</h3>
         <Grid container spacing={2}>
           {selectedIngredients.map((ingredient, index) => (
@@ -143,6 +146,7 @@ export default function RowAndColumnSpacing({ Tea, Ingredients, CorrectIngredien
         <button onClick={handleSubmit}  disabled={selectedIndices.length !== 4 }>Submit</button>
         {showError && <div>Ingredients not correct</div>}
       </div>
+      {/* div to make the timer go on the other side */}
       <div style={{ marginLeft: '20px' , marginTop: '40px'}}>
         <h3>Timer: {timer} seconds</h3>
       </div>
