@@ -1,0 +1,36 @@
+ .NavBar {
+    position: absolute;
+    top: 20%; /* Position the NavBar 50% from the top */
+    left: 50%; /* Position the NavBar 50% from the left */
+    transform: translate(-50%, -50%); /* Center the NavBar horizontally and vertically */
+    background-color: transparent;
+    color: white;
+    padding: 1rem;
+    
+    
+  }
+  
+  .menu {
+    list-style-type: none;
+    padding: 0;
+    display: flex; /* Use Flexbox to align menu items */
+    justify-content: center; /* Center the menu items horizontally */
+    
+  }
+  
+  .menu li {
+    margin-right: 1rem;
+    background-color: black;
+  }
+  
+  .menu li:last-child {
+    margin-right: 0; /* Remove margin from the last menu item */
+  }
+  
+  /* Media query for responsiveness */
+  @media screen and (max-width: 768px) {
+    .NavBar {
+      width: 80%; /* Adjust the width for smaller screens */
+    }
+  }
+  
